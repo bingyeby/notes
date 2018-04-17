@@ -1,0 +1,18 @@
+安转的插件：
+    code runner
+    debugger for chrome 
+    document this
+    eclipse keymap
+    jetBrains IDE keymap
+
+    indenticator 获焦当前块
+    file peek -
+
+    markdown all in one
+    numbered bookmarks
+    terminal
+
+    
+    vscode-icons -
+
+

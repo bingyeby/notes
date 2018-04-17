@@ -1,0 +1,481 @@
+1、JavaScript语言精髓&ES6
+2、大话NodeJs 72般变化
+3、React&Vue专场及前端跨界
+4、MVVM、MVC框架那些事
+5、前端工程化解决方案汇总
+6、CSS古话今说与网站重构
+7、新时代前端性能优化
+8、JavaScript图形学
+9、数据结构与算法JavaScript实践
+10、BAT等一线公司面试指南
+
+
+1.1 关于XMLHttpRequest
+1.2 实现拖拽
+1.3 http状态码
+1.4 CSS动画的原理
+1.5 JS --- prototype
+1.6 高级javascript基础概念（模块、类、对象）
+
+
+什么是闭包？
+JS如何实现类，继承？
+什么是冒泡和捕获？
+JS有哪些数据类型？
+Null和Undefined的区别？
+判断时if是false的值？
+isNaN（）的作用？
+JS对象中的Array对象和String对象的各种方法
+this关键字在不同环境下的指向
+JS的作用域
+setTimeout和setInterval
+了解CSS3或HTML5吗，都用过哪些
+
+了解模板引擎、 
+熟悉比较火的前端框架或前端技术（JQuery、Bootstrap、Zepto、Node，Angular.JS），并且研究过源码、
+对svn或git 等版本控制软件的操作、 
+长期更新博客、 
+在github上有所贡献等，
+
+dom的操作，删除，移动，复制，插入，前插后插，指定插一类。
+事件的处理，兼容性写法，参数作用，扑获冒泡，委派代理。
+ie下的一些兼容性问题，js的，举例。
+动画方面，加速度，重力模拟实现。
+正则，基本的用法和相关函数作用考查。
+闭包，原型链，作用域，变量引用，类继承方法。
+内存泄露的原因和场景。
+h5里一些新增api的了解。
+性能优化和重构知识。
+
+模型盒，haslayout，doctype，hack写法，常见经典布局写法
+
+http1.0下i同域e6有几个最高并发数，
+
+1、盒装模型，以及在不同标准下的表现。（问到什么程度？比如最近会问何时margin会重叠）
+2、基本CSS的知识自行了解清楚（优先级、选择器、伪类、浮动元素、HACK等）
+3、原型与实现继承（特别重要！！我手下面80%应届生不熟悉原型，也许学校没实际应用过，但是不知道原型基本可以枪毙了）
+4、作用域、声明提前（特别喜欢拿这个做文章，分开出三道，第一道不会教你，剩下两道埋坑考察当场学习能力）
+5、基本插件如JQ等的使用和部分代码分析或实现
+6、原生JS的使用（创建、插入DOM，不同浏览器事件）
+7、跨域实现
+8、如何改善页面性能
+9、事件代理
+10、this、call、apply、callee 孰知应用
+11、正则
+12、布局，浮动布局，自适应布局，自适应左右分栏的实现（纯CSS）
+
+ 原型 作用域
+
+进阶版：
+1、AMD CMD 模块化JS
+2、同步、异步、回调、promise实现
+3、各种算法、数组去重等
+4、前端开发框架、编译、打包（选择一家方案使用了解）
+5、CSS3、HTML5常用方法
+6、重绘与回流及相关性能
+7、webkit内核特有的一些API
+8、MVC/JS面向对象思想
+dom, event,prototype,constructor 等基础概念。
+
+canvas实现动画需要那几部；
+写一个方法，实现为表单添加额外的参数
+
+外加HTTP协议跟前端性能优化相关内 容。二面是介绍自己做过项目中前端部分的优化，包括雅虎前端优化法则的应用，jQuery，JavaScript如何写比较高效，针对不同浏览器，平台的 性能优化等
+
+页面排版相关，兼容性处理，以及AMD，CMD规范什么的
+jQuery的事件代理实现，浏览器跨域方法，用JS实现 Array的indexOf方法
+JS的类继承实现
+javascript 有哪些方式能解决跨主域问题？
+	（使用HTML5 postMessage）（window.name实现的跨域数据传输）（利用ifram和location.hash和iframe设置来实现）（使用jsonp）
+javascript 的全局函数有哪些（escape parselnt setTimeout eval）？
+
+?掌握的JavaScript类库：jQuery、Prototype
+?掌握的JavaScript框架：BackBone、Vuejs、Angular.js、React.js
+?掌握的CSS预编译器：LessCss、Sass
+?掌握JavaScript模块加载器：RequireJS、Browserify
+?掌握项目构建工具：Grunt、Gulp
+?掌握项目管理和协同工具的使用：SVN、Git
+?掌握前端测试框架以及工具：Jasmine、Mocha
+?掌握基本后端开发：NodeJS、Python
+?掌握web相关技术：MongoDB、CoffeeScript、SEO、Socket.io、Express、Tornado等
+
+现代前端的一些新技术
+比如：
+?前端自动化工具（Gulp/Grunt等）
+?模块化（CommonJS，AMD/CMD模块加载器，各种Bundler，ES2015 Modules等）
+?前端 MV* 框架（Backbone，Angular等）
+?编译到 CSS 和 JS 的一些语言（Less/Sass/CoffeeScript等）
+?前端自动化测试工具（Karma，Mocha，Web Driver等）
+?其他
+NodeJs写点自动化的工具也还是需要的
+
+原生 API 写个 Ajax 请求怎么写
+
+比如 JS 跨域，WebSocket，SSE，WebGL 的素材获取
+
+静态、自适应、响应式布局、瀑布流式布局
+
+
+本文包含了一些用于考查候选者的前端面试问题。不建议对单个候选者问及每个问题 (那需要好几个小时)。只要从列表里挑选一些，就能帮助你考查候选者是否具备所需要的技能。
+
+备注： 这些问题中很多都是开放性的，可以引发有趣的讨论。这比直接的答案更能体现此人的能力。
+
+
+常见问题：
+
+你在昨天/本周学到了什么？
+编写代码的哪些方面能够使你兴奋或感兴趣？
+你最近遇到过什么技术挑战？你是如何解决的？
+在制作一个网页应用或网站的过程中，你是如何考虑其 UI、安全性、高性能、SEO、可维护性以及技术因素的？
+请谈谈你喜欢的开发环境。
+你最熟悉哪一套版本控制系统？
+你能描述当你制作一个网页的工作流程吗？
+假若你有 5 个不同的样式文件 (stylesheets), 整合进网站的最好方式是?
+你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗?
+你如何对网站的文件和资源进行优化？
+浏览器同一时间可以从一个域名下载多少资源？
+有什么例外吗？
+请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间)
+如果你参与到一个项目中，发现他们使用 Tab 来缩进代码，但是你喜欢空格，你会怎么做？
+请写一个简单的幻灯效果页面。
+如果今年你打算熟练掌握一项新技术，那会是什么？
+请谈谈你对网页标准和标准制定机构重要性的理解。
+什么是 FOUC (无样式内容闪烁)？你如何来避免 FOUC？
+请解释什么是 ARIA 和屏幕阅读器 (screenreaders)，以及如何使网站实现无障碍访问 (accessible)。
+请解释 CSS 动画和 JavaScript 动画的优缺点。
+什么使 CORS，以及其要解决的问题？
+
+HTML 相关问题：
+
+doctype(文档类型) 的作用是什么？
+浏览器标准模式 (standards mode) 和怪异模式 (quirks mode) 之间的区别是什么？
+HTML 和 XHTML 有什么区别？
+如果页面使用 ‘application/xhtml+xml’ 会有什么问题吗？
+如果网页内容需要支持多语言，你会怎么做？
+在设计和开发多语言网站时，有哪些问题你必须要考虑？
+data-属性的作用是什么？
+如果把 HTML5 看作做一个开放平台，那它的构建模块有哪些？
+请描述 cookies、sessionStorage 和 localStorage 的区别。
+请解释 <script>、<script async> 和 <script defer> 的区别。
+为什么通常推荐将 CSS <link> 放置在 <head></head> 之间，而将 JS <script> 放置在 </body> 之前？你知道相关解释吗？
+什么是渐进式渲染 (progressive rendering)？
+你用过哪些不同的 HTML 模板语言？
+CSS 相关问题：
+
+CSS 中类 (classes) 和 ID 的区别。
+请问 “resetting” 和 “normalizing” CSS 之间的区别？你会如何选择，为什么？
+请解释浮动 (Floats) 及其工作原理。
+描述z-index和叠加上下文是如何形成的。
+请描述 BFC(Block Formatting Context) 及其如何工作。
+列举不同的清除浮动的技巧，并指出它们各自适用的使用场景。
+请解释 CSS sprites，以及你要如何在页面或网站中实现它。
+你最喜欢的图片替换方法是什么，你如何选择使用。
+你会如何解决特定浏览器的样式问题？
+如何为有功能限制的浏览器提供网页？
+你会使用哪些技术和处理方法？
+有哪些的隐藏内容的方法 (如果同时还要保证屏幕阅读器可用呢)？
+你用过栅格系统 (grid system) 吗？如果使用过，你最喜欢哪种？
+你用过媒体查询，或针对移动端的布局/CSS 吗？
+你熟悉 SVG 样式的书写吗？
+如何优化网页的打印样式？
+在书写高效 CSS 时会有哪些问题需要考虑？
+使用 CSS 预处理器的优缺点有哪些？
+请描述你曾经使用过的 CSS 预处理器的优缺点。
+如果设计中使用了非标准的字体，你该如何去实现？
+请解释浏览器是如何判断元素是否匹配某个 CSS 选择器？
+请描述伪元素 (pseudo-elements) 及其用途。
+请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。
+请解释 * { box-sizing: border-box; } 的作用, 并且说明使用它有什么好处？
+请罗列出你所知道的 display 属性的全部值
+请解释 inline 和 inline-block 的区别？
+请解释 relative、fixed、absolute 和 static 元素的区别
+CSS 中字母 ‘C’ 的意思是叠层 (Cascading)。请问在确定样式的过程中优先级是如何决定的 (请举例)？如何有效使用此系统？
+你在开发或生产环境中使用过哪些 CSS 框架？你觉得应该如何改善他们？
+请问你有尝试过 CSS Flexbox 或者 Grid 标准规格吗？
+为什么响应式设计 (responsive design) 和自适应设计 (adaptive design) 不同？
+你有兼容 retina 屏幕的经历吗？如果有，在什么地方使用了何种技术？
+请问为何要使用 translate() 而非 absolute positioning，或反之的理由？为什么？
+JS 相关问题：
+
+请解释事件代理 (event delegation)。
+请解释 JavaScript 中 this 是如何工作的。
+请解释原型继承 (prototypal inheritance) 的原理。
+你怎么看 AMD vs. CommonJS？
+请解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：function foo(){ }();.
+要做哪些改动使它变成 IIFE?
+描述以下变量的区别：null，undefined 或 undeclared？
+该如何检测它们？
+什么是闭包 (closure)，如何使用它，为什么要使用它？
+请举出一个匿名函数的典型用例？
+你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？
+请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？
+请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
+.call 和 .apply 的区别是什么？
+请解释 Function.prototype.bind？
+在什么时候你会使用 document.write()？
+请指出浏览器特性检测，特性推断和浏览器 UA 字符串嗅探的区别？
+请尽可能详尽的解释 AJAX 的工作原理。
+请解释 JSONP 的工作原理，以及它为什么不是真正的 AJAX。
+你使用过 JavaScript 模板系统吗？
+如有使用过，请谈谈你都使用过哪些库？
+请解释变量声明提升 (hoisting)。
+请描述事件冒泡机制 (event bubbling)。
+“attribute” 和 “property” 的区别是什么？
+为什么扩展 JavaScript 内置对象不是好的做法？
+请指出 document load 和 document ready 两个事件的区别。
+== 和 === 有什么不同？
+请解释 JavaScript 的同源策略 (same-origin policy)。
+如何实现下列代码：
+[1,2,3,4,5].duplicator(); // [1,2,3,4,5,1,2,3,4,5]
+什么是三元表达式 (Ternary expression)？“三元 (Ternary)” 表示什么意思？
+什么是 "use strict"; ? 使用它的好处和坏处分别是什么？
+请实现一个遍历至 100 的 for loop 循环，在能被 3 整除时输出 “fizz”，在能被 5 整除时输出 “buzz”，在能同时被 3 和 5整除时输出 “fizzbuzz”。
+为何通常会认为保留网站现有的全局作用域 (global scope) 不去改变它，是较好的选择？
+为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？
+请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)。
+What is the extent of your experience with Promises and/or their polyfills?
+使用 Promises 而非回调 (callbacks) 优缺点是什么？
+使用一种可以编译成 JavaScript 的语言来写 JavaScript 代码有哪些优缺点？
+你使用哪些工具和技术来调试 JavaScript 代码？
+你会使用怎样的语言结构来遍历对象属性 (object properties) 和数组内容？
+请解释可变 (mutable) 和不变 (immutable) 对象的区别。
+请举出 JavaScript 中一个不变性对象 (immutable object) 的例子？
+不变性 (immutability) 有哪些优缺点？
+如何用你自己的代码来实现不变性 (immutability)？
+请解释同步 (synchronous) 和异步 (asynchronous) 函数的区别。
+什么是事件循环 (event loop)？
+请问调用栈 (call stack) 和任务队列 (task queue) 的区别是什么？
+测试相关问题：
+
+对代码进行测试的有什么优缺点？
+你会用什么工具测试你的代码功能？
+单元测试与功能/集成测试的区别是什么？
+代码风格 linting 工具的作用是什么？
+效能相关问题：
+
+你会用什么工具来查找代码中的性能问题？
+你会用什么方式来增强网站的页面滚动效能？
+请解释 layout、painting 和 compositing 的区别。
+网络相关问题：
+
+为什么传统上利用多个域名来提供网站资源会更有效？
+请尽可能完整得描述从输入 URL 到整个网页加载完毕及显示在屏幕上的整个流程。
+Long-Polling、Websockets 和 Server-Sent Event 之间有什么区别？
+请描述以下 request 和 response headers：
+Diff. between Expires, Date, Age and If-Modified-…
+Do Not Track
+Cache-Control
+Transfer-Encoding
+ETag
+X-Frame-Options
+什么是 HTTP action？请罗列出你所知道的所有 HTTP action，并给出解释。
+
+1m: 防刷票,cookie,网络攻击,团队管理 
+2m:模块化,lazyloader,团队发展balabala 
+3m:Hadoop,负载均衡,分布式,ReactCanvas 
+4mHR:优缺点,别人怎么看你->被转投。
+继续
+1m:布局,作用域链,var提升作用...
+2m(真知音):fpm包管理,包依赖结构及依赖处理,fibjs/nodejs,React,单页SEO
+3mHR:怎么看待被转投,还有什么想说的么... 
+
+web前端优化
+事件冒泡（选项卡的实现）
+CSS布局相关
+应该用float吗？
+模块化编程
+为什么有闭包
+延迟请求
+
+作用域问题
+    PS：其实是settimeout会抛往主干流程外......
+    var a = 6;
+    setTimeout(function () {
+        alert(a);
+        a = 666;
+    }, 1000);
+    a = 66;
+    这道题，我可耻的没有答起，我面试结束刚刚上出租就知道这道题很水了。。。。考察作用域的，当时活生生的被大神气场照住了，周围人的集体智商都减低了！！！
+
+语义化标签
+    这道题我确实没辙，之前其实差点写类似的博客，却没有写，今天结束后补上吧！
+    1）tite与h1的区别
+    2）b与strong的区别
+    3）i与em的区别
+    PS：不要小看这些题，80%人答不上来
+
+事件绑定
+    addEventListener，第三个参数是用来表示事件是以事件冒泡还是事件捕获这个各位都知道！但是他问的问题是：
+    我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡，你来说下会执行几次事件，然后会先执行冒泡还是捕获！！！
+    来吧，谁能说出来。。。。
+    
+CSS选择器问题
+    考察优先级问题，反正会出很多莫名其妙的变形，比如将style标签写在body后与body前有什么区别，比如同一dom应用多个class其应该如何表现，比如class a定义颜色为blue，class b定义颜色为red，同时应用到dom上，dom作何显示。。。
+
+
+代码相关的问题：
+
+问题：foo的值是什么？
+
+var foo = 10 + '20';
+问题：如何实现以下函数？
+
+add(2, 5); // 7
+add(2)(5); // 7
+问题：下面的语句的返回值是什么？
+
+"i'm a lasagna hog".split("").reverse().join("");
+问题：window.foo的值是什么？
+
+( window.foo || ( window.foo = "bar" ) );
+问题：下面两个 alert 的结果是什么？
+
+var foo = "Hello";
+(function() {
+  var bar = " World";
+  alert(foo + bar);
+})();
+alert(foo + bar);
+问题：foo.length的值是什么？
+
+var foo = [];
+foo.push(1);
+foo.push(2);
+问题：foo.x的值是什么？
+
+var foo = {n: 1};
+var bar = foo;
+foo.x = foo = {n: 2};
+问题：下面代码的输出是什么？
+
+console.log('one');
+setTimeout(function() {
+  console.log('two');
+}, 0);
+console.log('three');
+
+
+
+1.2Web前端年后跳槽必看的各种面试题
+　　幸运且光荣的被老大安排了一个任务 - “去整理些前端面试题”。年前确实不是招人的好时候，所以我们前端团队经过了超负荷的运转，终于坚持过了春节。春节以后就开始招人啦，这套题考察的目标就是基础基础再基础，嘿嘿。
+　　事先声明：
+?这些题目的来源：面试曾经被问过；工作被别人问过或者遇见过；网上看见过...
+?答案真心不给提供，真的是许多问题都需要个人的理解和沉淀，所以还请各位自己动手...前端可以试试自己差不多能回答多少题，哈哈。
+?其实很多题我也没有好答案，面试的时候如果遇到牛人我也可以顺便交流交流，反正我也只是一面，不丢人也不怕丢人。
+?如果朋友们有好的面试题欢迎提建议，我会其实补充更新的，先谢谢各位了。
+2.　　HTML相关
+1.<!DOCTYPE>标签的定义与用法。
+2.块级元素和行内元素都有哪些？
+3.你真的了解HTML吗？ 雅虎面试题　　把前面黄底那段拿去搜索下就知道了(曾在某浪公司面试的时候被问到过，确实是很好的问题)。
+?
+3.　　CSS相关
+1.介绍所知道的CSS hack技巧(如：_，?*， +，?\9， !important 之类)。
+2.介绍CSS盒模型。
+3.CSS层叠是什么？介绍一下。
+4.都知道哪些CSS浏览器兼容性问题。
+5.有时会被问到些刁钻点的题，比如position值都有哪些，CSS3都有哪些新内容...
+?
+4.　　JavaScript基础相关
+1.HTTP协议的状态消息都有哪些？(如200、302对应的描述)
+2.AJAX是什么? AJAX的交互模型(流程)? AJAX跨域的解决办法?
+3.同步和异步的区别??
+4.简述JavaScript封装。
+5.JavaScript继承有哪两种形式形式，进行描述。
+6.什么是闭包？以下代码点击<p>会输出什么？为什么？能大概说明白的话继续问能想出几种解决办法。
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>闭包演示</title>
+<style type="text/css">
+    p {background:gold;}
+</style>
+<script type="text/javascript"> 
+function init() {    
+    var pAry = document.getElementsByTagName("p");    
+    for( var i=0; i<pAry.length; i++ ) {    
+         pAry[i].onclick = function() {    
+         alert(i);    
+    } 
+  }
+}
+</script> 
+</head> 
+<body onload="init();"> 
+<p>产品 0</p> 
+<p>产品 1</p> 
+<p>产品 2</p> 
+<p>产品 3</p> 
+<p>产品 4</p> 
+</body> 
+</html> 
+7.在JS中this关键字的使用场合和用法(如在构造函数中、setTimeout中等)。
+8.简述下cookie的操作，还有cookie的属性都知道哪些。
+9.IE与FF的JS兼容性都知道哪些。
+10.DOM操作 - 怎样添加、移除、移动、复制、创建和查找节点(这个问题真心是基础题，一般不会问)。
+?
+5.　　jQuery相关
+1.jQuery源码是否尝试去读过？说说基本的架构或者?jQuery.fn.init?中都做了哪些判断。
+2.都知道哪些不好的jQuery书写方式。
+3.Sizzle是否有读过？
+?
+6.　　其它相关的加分项：
+1.都使用和了解过哪些编辑器？都使用和了解过哪些日常工具？
+2.都知道有哪些浏览器内核？开发过的项目都兼容哪些浏览器？
+3.国内外的JS牛人都知道哪些？
+4.瀑布流布局或者流式布局是否有了解
+5.正则表达式有系统学习过吗(看书或网上教程)？有的话就问问简单点的邮箱验证、URL验证，?或者问问 贪婪匹配与懒惰匹配 的理论知识。
+6.Node.js是否有过尝试？到什么程度？说说个人理解的看法？
+7.HTML5都有哪些新的JS API？
+8.前端优化知识都知道哪些？
+9.基础算法题（如快速排序，能否一两句说说重要的核心原理或者数组消重等）。
+10.是否有接触过或者了解过重构。
+　　如果觉得此文还算用心，请劳驾点击右下角的推荐^.^ 。?
+　　即将离职，再为老东家出一份力吧。公司网址 www.baifendian.com ，工作地点 北京总公司、沈阳分公司 都行。待遇的话我确实不方便多说，不过以国内的标准来说算是不错的。
+　　对前端职位感兴趣的话可以发简历至 peng.zhang@baifendian.com ，title请注明来自博客园，谢谢(感觉利用博客招人有点罪恶感，所以就把字设置的小一些吧^.^)。
+
+02. 性能优化方面
+我理解为代码层面的
+我：
+一是：HTML层次结构不要太深，层次结构深会xx…
+二是：防止内存泄露，DOM和javascript是两种东西，特别在IE等浏览器，javascript操作DOM效率低，容易造成内存泄露，在不使用的时候最好设为null
+三是：写类的时候用prototype，不要动态this.xx = funciton(){}, 这样不能资源复用
+面试官：还有吗
+我疑问：哪方面的优化
+面试官：站点性能优化
+我豁然，说：哦，缓存啊，代码本地化
+面试官疑惑：本地缓存？如何？
+我：Expires，Etag等
+面试官：还有呢
+我：如果有条件使用cdn，还有cookie隔离
+面试官疑问：隔离？
+我：就是防止静态资源发送cookie，通过配置独立域名的，另外独立域名的好处还有多线程下载，因为传统浏览器限制了并发数2，是一个域名限制2，如果多一个域名可以多几个并发
+面试官：那么通常说脚本为什么要放头和放尾呢
+我：我知道一般放尾是为了不影响HTML的解析，另外放尾处可以不用DOM ready，直接可以document.getElementById等，至于放在头一般是变量定义吧，还有可能是受base得影响，放在头部一般是css文件，防止裸奔
+
+
+
+1.如何更好地面试JavaScript工程师
+基础
+    冒泡与捕获：它们的定义，它们的区别，如何阻止冒泡?基础知识，经典题目。但是不是每个人都能完整全面的回答出这个问题，面试者需要对DOM tree有自己的理解。
+    闭包：闭包是一个很好的面试题目，能够很好的考查出不同水平的面试者。了解什么是闭包、如何使用闭包、闭包的原理、闭包的真正原理，只有对JS的作用域链、垃圾回收机制有深入了解的工程师才能正确无误的完整回答这个问题。
+    Scope Chain是了解Closure原理的关键
+工具库
+    jQuery：考查编程习惯和经验。jQuery作为现在使用最为广泛而且最简单的JS库，能够很好的测出使用者的开发经验和JS水平。一个有着真正开发经验的工程师，应当能正确的写出各种类型的选择器，回答为什么用bind来进行事件绑定、mouseover和mouseenter的区别。如果这些考不倒他，别急，live方法的实现原理、ready方法的实现机制这两个问题足以考查出他对DOM、浏览器差异的认识。
+    extJS、YUI、Prototype：这些工具库或框架都有各自的特点，可以采用像上面类似的问题从浅入深进行了解。
+实际问题
+    解决实际问题考查的是你把知识融会贯通的能力、解决问题的能力、理解能力以及学习能力，这对综合素质的考查是一种很好的方式。第一次面对一个问题，面试者是否能迅速给出思路、由过程推导出结果，能否在一些提示下一步步得到最终的完整答案，这都是很好的考察点。
+    Autopager：自动翻页功能(实现方式参考http://blog.csdn.net/hfahe/article/details/5827483)是一个由浅入深考查面试者能力的好例子。对滚动条事件的了解，pageHeight、windowHeight、scrollY的区别和关系是两个关键点，而最后对于事件的clearTimeout优雅处理是隐藏的考查点。
+    Lazyloader：许多人见过图片延迟加载的产品，但是他们是否有了解过背后的实现原理?从功能抽象到具体实现，onresize的考虑、延迟触发的考虑，这道题目有一定难度，和上面的例子也有一定相似之处。
+    经过了前三个方面的了解，你应该已经对这个面试者的基本水平有了一个大致的判断。下面的步骤可以让你了解这个人能够承担什么样的工作，他的发展潜力多大。
+项目
+    通过之前的项目经历可以认识他的Team work能力、解决问题的能力，在项目中的角色和承担的责任也可以反衬他的个人能力。
+    如果他没有做过跨浏览器开发，那么这种需要长期积累的任务就不适合分派给他来解决;如果他曾经有浏览器插件的开发经历，那么浏览器App的工作也许能够利用他的现有经验;如果他用过jQuery Mobile、sencha touch或者XUI，那么他可能适合开发移动Web App。作为管理者高明的地方在于，把合适的人用在合适的地方。
+技术视野
+    具有技术视野的人一般具有很大的发展潜力，他们未来不会仅仅只是一个普通的工程师，而有可能会成长为技术专家或者技术管理者。
+    在HTML5方面应当对新的语义标签、Canvas、Webworker、Drag & Drop有所经验或者了解;在CSS3方面，应当或多或少尝试过Radius、Gradient、Transform。当然，如果能够了解Mask，甚至能够知道Flexible Box的使用方法和原理，那么这个人对盒子模型的理解和对新知识的学习能力可以得到很好的体现。
+    JS开发工程师是最容易的职位，也是最难的职位。新的技术和框架层出不穷、浏览器版本日新月异、越来越多API的出现，好的JS开发工程师需要随时学习和更新许多知识，包括后台(Webworker、Websocket、Node.js)、UI(Canvas、Transparent)、动画(Transform、Transition、Animation)等方面。面试者是否有自我更新意识，他的技术视野多高决定了他能够涵盖的范围多大，他的未来发展潜力多大。
+HTML5已经战胜移动Flash，前途无量
+    如果能够把以上所有问题清楚、顺利的回答完整，我相信他的表达能力、沟通能力应该是相当优秀的，同时值得欣喜的是，我们又找到了一位优秀的同伴。
+    
+原文：http://blog.csdn.net/hfahe/article/details/6970474
