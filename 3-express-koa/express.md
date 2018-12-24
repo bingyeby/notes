@@ -508,3 +508,7 @@ app.use(express.static(__dirname + '/public'));
     
     3.add your view templates as .html inside “views” folder. Restart you node server and start the app in the browser.
     Though this will render html without any issue, I would recommend you to use JADE by learning it. Jade is an amazing template engine and learning this will help you achieve better design & scalability.
+
+MongoDB语法与现有关系型数据库SQL语法比较
+    https://www.cnblogs.com/java-spring/p/9488200.html
+

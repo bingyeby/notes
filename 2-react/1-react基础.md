@@ -193,3 +193,34 @@
     如果你想使用 ref，就像你想使用生命周期方法或者 state 一样，应该将其转换为 class 组件;
     但是，你可以在函数式组件内部使用 ref，只要它指向一个 DOM 元素或者 class 组件;
     
+
+
+### 为什么 ReactJS 不适合复杂的前端项目？
+
+https://www.jianshu.com/p/2514e215589b
+
+问题一：ReactJS组件难以在复杂交互页面中复用
+
+问题二：ReactJS的虚拟DOM 算法又慢又不准
+
+    ReactJS的页面渲染算法是虚拟DOM差量算法。
+    
+        开发者需要提供 render 函数，根据 props 和 state 生成虚拟 DOM。
+        然后 ReactJS 框架根据 render 返回的虚拟 DOM 创建相同结构的真实 DOM.
+        每当 state 更改时，ReacJS 框架重新调用 render 函数，获取新的虚拟 DOM 。
+        然后，框架会比较上次生成的虚拟 DOM 和新的虚拟 DOM 有哪些差异，然后把差异应用到真实DOM上。
+
+    这样做有两大缺点：
+
+        每次 state 更改，render 函数都要生成完整的虚拟 DOM. 哪怕 state 改动很小，render函数也会完整计算一遍。如果 render 函数很复杂，这个过程就白白浪费了很多计算资源。
+
+        ReactJS框架比较虚拟DOM差异的过程，既慢又容易出错。比如，假如你想要在某个 <ul> 列表的顶部插入一项 <li> ，那么ReactJS框架会误以为你修改了 <ul> 的每一项 <li>，然后在尾部插入了一个 <li>。
+
+    这是因为 ReactJS收到的新旧两个虚拟DOM之间相互独立，ReactJS并不知道数据源发生了什么操作，只能根据新旧两个虚拟DOM来猜测需要执行的操作。
+    
+    自动的猜测算法既不准又慢，必须要前端开发者手动提供 key 属性、shouldComponentUpdate 方法、componentDidUpdate 方法或者 componentWillUpdate 等方法才能帮助 ReactJS 框架猜对。
+
+
+问题三：ReactJS的HTML模板功能既不完备、也不健壮
+
+问题四：ReactJS与服务器通信时需要复杂的异步编程
