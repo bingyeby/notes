@@ -19,7 +19,23 @@ babel是一个广泛使用的ES6转码器，可以将 ES6 代码转为 ES5 代�
         $ npm install --save-dev babel-preset-stage-3
 
 ### babel-cli：
-    用于命令行转码 $ babel example.js -o compiled.js
+    # 转码结果输出到标准输出
+    $ babel example.js
+
+    # 转码结果写入一个文件
+    # --out-file 或 -o 参数指定输出文件
+    $ babel example.js --out-file compiled.js
+    # 或者
+    $ babel example.js -o compiled.js
+
+    # 整个目录转码
+    # --out-dir 或 -d 参数指定输出目录
+    $ babel src --out-dir lib
+    # 或者
+    $ babel src -d lib
+
+    # -s 参数生成source map文件
+    $ babel src -d lib -s
 
 ### babel-polyfill:
 Babel 默认只转换新的 JavaScript 句法（如箭头函数），而不转换新的 API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign String.padStart Array.from）都不会转码。如果想让这个方法运行，必须使用babel-polyfill，为当前环境提供一个垫片。
@@ -497,4 +513,23 @@ Installing new dependencies
 
 ```
 
+### 按需加载
+https://github.com/ant-design/babel-plugin-import
 
+    如果你在开发环境的控制台看到下面的提示，那么你可能使用了 import { Button } from 'antd'; 的写法引入了 antd 下所有的模块，这会影响应用的网络性能。
+
+    You are using a whole package of antd, please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size.
+    控制台警告
+
+    可以通过以下的写法来按需加载组件。
+
+    import Button from 'antd/lib/button';
+    import 'antd/lib/button/style'; // 或者 antd/lib/button/style/css 加载 css 文件
+    antd/es/button 可以加载 ES 版本的模块，方便进一步 Tree Shake.
+
+    如果你使用了 babel，那么可以使用 babel-plugin-import 来进行按需加载，加入这个插件后。你可以仍然这么写：
+
+    import { Button } from 'antd';
+    插件会帮你转换成 antd/lib/xxx 的写法。另外此插件配合 style 属性可以做到模块样式的按需自动加载。
+
+    注意，babel-plugin-import 的 style 属性除了引入对应组件的样式，也会引入一些必要的全局样式。如果你不需要它们，建议不要使用此属性。你可以 import 'antd/dist/antd.css' 手动引入，并覆盖全局样式。

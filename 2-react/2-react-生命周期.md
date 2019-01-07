@@ -49,7 +49,7 @@
     class Component extends React.Component{
         constructor(){
             this.state = {
-            render: true,
+                render: true,
             }
         }
     }

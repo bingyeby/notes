@@ -8,6 +8,10 @@ W3C DOM 的 Javascript 实现。
 
 Github 地址： http://github.com/tmpvar/jsdom/issues
 
+#### cheerio
+    https://www.cnblogs.com/xiaxuexiaoab/p/7124956.html
+    nodejs爬虫笔记(一)---request与cheerio等模块的应用
+
 #### Dox
 兼容 Markdown, JSDoc 格式的文档生成器。
 
@@ -168,6 +172,7 @@ console.log('this is a data'.data);
 ```
 
 
+
 ### 文件操作相关
 #### copy
 复制除node_modules之外的文件
@@ -188,7 +193,6 @@ copy(['F:/practice/**/*', '!F:/practice/node_modules', '!F:/practice/node_module
 
 #### mkdirp
 多层次创建文件夹
-
 ```js
 var mkdirp = require('mkdirp');
     
@@ -197,9 +201,41 @@ mkdirp('./tmp/foo/bar/baz', function (err) {
     else console.log('pow!')
 });
 ```
+#### fs-extra
+https://github.com/jprichardson/node-fs-extra
+
+Node.js: extra methods for the fs object like copy(), remove(), mkdirs()
+
+```
+copy
+emptyDir
+ensureFile
+ensureDir
+ensureLink
+ensureSymlink
+mkdirp
+mkdirs
+move
+outputFile
+outputJson
+pathExists
+readJson
+remove
+writeJson
+```
+
+
 
 
 ### node npm 基础配置相关
+
+### n (不支持win)
+npm install -g n
+
+n stable
+
+n v8.9.1 
+
 #### nvm
 安装最新的node版本
 
@@ -221,6 +257,11 @@ path: C:\Program Files\nodejs
 + node_mirror: https://npm.taobao.org/mirrors/node/
 + npm_mirror: https://npm.taobao.org/mirrors/npm/
 ```
+
+Node版本管理器--nvm，可以运行在多种操作系统上。nvm for windows 是使用go语言编写的软件。 我电脑使用的是Windows操作系统，所以我要记录下在此操作系统上nvm的安装和使用。
+https://blog.csdn.net/sinat_38334334/article/details/80013648
+
+
 #### nrm
 查看npm源地址，在终端输入以下命令
 
@@ -457,58 +498,4 @@ nide
 ### 单元测试
 [单元测试](https://wanghx.cn/blog/progressive/lesson1.html#单元测试)
 
-
-
-
-## express
-### 安装
-    安装命令中的 “-g” 表示全局(global)
-    express的版本不是通常的 “-v” 来查看，而是 “-V”
-    安装express项目的命令如下
-        express -e nodejs-product
-        -e, --ejs add ejs engine support 
-        -J, --jshtml add jshtml engine support (defaults to jade)
-
-
-### forever
-    虚拟机一关node服务就关了，不过forever可以让node服务不停止：
-    forever是一个简单的命令式nodejs的守护进程，能够启动，停止，重启App应用。
-    forever完全基于命令行操作，在forever进程之下，创建node的子进程，通过monitor监控node子进程的运行情况，一旦文件更新，或者进程挂掉，forever会自动重启node服务器，确保应用正常运行。
-
-### API
-```javascript
-app.set('port', process.env.PORT || 3000)
-app.get('port')
-
-app.render(view, [options], callback) 渲染 view, callback 用来处理返回的渲染后的字符串。
-
-app.use([path], function) 使用中间件 function,可选参数path默认为"/"。使用 app.use() “定义的”中间件的顺序非常重要，它们将会顺序执行，use的先后顺序决定了中间件的优先级(经常有搞错顺序的时候);
-
-app.engine(ext, callback) 注册模板引擎的 callback 用来处理ext扩展名的文件。
-
-app.use(express.static(__dirname + '/public'));
-```
-
-
-### How do I use HTML as the view engine in Express?
-    https://stackoverflow.com/questions/17911228/how-do-i-use-html-as-the-view-engine-in-express
-    
-    To make the render engine accept html instead of jade you can follow the following steps;
-    
-    1.Install consolidate and swig to your directory.
-        npm install consolidate
-        npm install swig
-    
-    2.add following lines to your app.js file
-        var cons = require('consolidate');
-        // view engine setup
-        app.engine('html', cons.swig)
-        app.set('views', path.join(__dirname, 'views'));
-        app.set('view engine', 'html');
-    
-    3.add your view templates as .html inside “views” folder. Restart you node server and start the app in the browser.
-    Though this will render html without any issue, I would recommend you to use JADE by learning it. Jade is an amazing template engine and learning this will help you achieve better design & scalability.
-
-MongoDB语法与现有关系型数据库SQL语法比较
-    https://www.cnblogs.com/java-spring/p/9488200.html
 
