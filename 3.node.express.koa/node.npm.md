@@ -223,13 +223,65 @@ readJson
 remove
 writeJson
 ```
+#### Glob
+https://github.com/isaacs/node-glob
 
+https://www.cnblogs.com/liulangmao/p/4552339.html
 
+glob工具基于javascript.它使用了 minimatch 库来进行匹配
 
+npm install glob
+
+```js
+var glob = require("glob")
+
+// options 是可选的
+glob("**/*.js", options, function (er, files) {
+  // files 是匹配到的文件的数组.
+  // 如果 options中`nonull` 选项被设置为true, 而且没有找到任何文件,那么files就是glob规则本身,而不是空数组
+  // er是当寻找的过程中遇的错误
+})
+
+//*:匹配路径中某部分:0个或多个字符
+glob("js/*.js",function (er, files) {
+    console.log(files)
+})
+```
+```
+*  匹配该路径段中0个或多个任意字符 "js/*.js"
+** 和 * 一样,可以匹配任何内容,但**不仅匹配路径中的某一段,而且可以匹配 'a/b/c' 这样带有'/'的内容,所以,它还可以匹配子文件夹下的文件. 
+?  匹配该路径段中1个任意字符 "js/?.js"
+[...] 匹配该路径段中在指定范围内字符,不能组合,只能是其中一个字符 "js/a[0-3].js"
+*(pattern|pattern|pattern)  匹配括号中多个模型的0个或多个或任意个的组合 "js/*(a|a1|b).js"  js中ab.js,a.js,a1.js,b.js
+
+!(pattern|pattern|pattern)  匹配不包含任何模型 "js/!(a|b).js"
+    "js/!(a|b).js"
+        获取js目录下名字中不包含a,也不包含b的所有文件.
+        带有a或者b的,都排除.需要注意的是,它并非是*(a|b)的取反
+?(pattern|pattern|pattern) : 匹配多个模型中的0个或1个[精确匹配模型,不可以组合]
+    "js/?(a|a2|b).js"
+        获取js文件夹中a.js,a2.js,b.js
+        它和 *(pattern|pattern|pattern) 的区别是,不可以组合,必须完全匹配
++(pattern|pattern|pattern) : 匹配多个模型中的1个或多个
+    "js/+(a|a1|b).js"
+        获取js目录下a.js,a1.js,b.js,或者a,a1,b这几个字符的组合的js,比如ab.js
+        它和 *(pattern|pattern|pattern) 的区别是,至少有一个,为空不匹配
+@(pattern|pat*|pat?erN)  : 匹配多个模型中的1个
+    精确匹配模型,不可以组合.
+    和?的区别就是不可以为空.必须要是其中的一个.
+
+```
+```js
+var glob = require("glob");
+
+//  不包含node_modules
+glob('**',{ignore:'node_modules/**'}, (er, files) => {
+    console.log(` n`, files);
+})
+```
 
 ### node npm 基础配置相关
-
-### n (不支持win)
+#### n (不支持win)
 npm install -g n
 
 n stable
