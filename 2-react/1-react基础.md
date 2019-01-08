@@ -224,3 +224,8 @@ https://www.jianshu.com/p/2514e215589b
 问题三：ReactJS的HTML模板功能既不完备、也不健壮
 
 问题四：ReactJS与服务器通信时需要复杂的异步编程
+
+
+### 你需要Mobx还是Redux？
+[你需要Mobx还是Redux？](http://blog.codingplayboy.com/2018/02/11/mobx-vs-redux/#i-2)
+使用mobx开发高性能react应用 http://foio.github.io/mobx-react/
