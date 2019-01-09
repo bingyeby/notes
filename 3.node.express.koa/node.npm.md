@@ -228,6 +228,8 @@ https://github.com/isaacs/node-glob
 
 https://www.cnblogs.com/liulangmao/p/4552339.html
 
+https://www.helplib.com/GitHub/article_45503
+
 glob工具基于javascript.它使用了 minimatch 库来进行匹配
 
 npm install glob
@@ -272,8 +274,6 @@ glob("js/*.js",function (er, files) {
 
 ```
 ```js
-var glob = require("glob");
-
 //  不包含node_modules
 glob('**',{ignore:'node_modules/**'}, (er, files) => {
     console.log(` n`, files);
@@ -427,14 +427,14 @@ $ npm install nodemon --save-dev
 npm run dev  // 会自动去当前项目的 node_modules/.bin 下找可执行文件来执行对应的命令。
 ```
 
-#### npx
+#### npx (内置)
 npx 是个很方便的 cli 工具，能够直接运行安装在项目下 node_modules/.bin 的工具，很多时候我们不需要全局安装太多 cli 工具，就可以只全局安装一个 npx ，当需要用到某些 cli 工具的时候，直接安装到项目下，然后通过 npx 来执行。
 
 比如上面的 nodemon ，如果安装到项目下的话，就可以通过以下指令来运行
 
 $ npx nodemon httptest.js
 
-#### chrome
+#### inspector-proxy
 除了使用 vscode 进行 debug 之外，我们还可以使用 chrome 的 devtool 来进行 debug，可以先安装一下 inspector-proxy
 
 $ npm install inspector-proxy --save-dev
@@ -458,6 +458,9 @@ proxy url: chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8
 如果要搭配 nodemon 则可以这么写，文件更改重启之后，只要在 chrome 上点一下 reconnect 即可继续 debug
 
 $ npx nodemon --exec 'inspector-proxy ./httptest.js'
+
+
+https://www.cnblogs.com/luoguixin/p/6346620.html
 
 
 
