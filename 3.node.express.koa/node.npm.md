@@ -174,6 +174,30 @@ console.log('this is a data'.data);
 
 
 ### 文件操作相关
+#### fs-extra
+https://github.com/jprichardson/node-fs-extra
+
+Node.js: extra methods for the fs object like copy(), remove(), mkdirs()
+
+```
+copy
+emptyDir
+ensureFile
+ensureDir
+ensureLink
+ensureSymlink
+mkdirp
+mkdirs
+move
+outputFile
+outputJson
+pathExists
+readJson
+remove
+writeJson
+```
+
+
 #### copy
 复制除node_modules之外的文件
 
@@ -201,28 +225,7 @@ mkdirp('./tmp/foo/bar/baz', function (err) {
     else console.log('pow!')
 });
 ```
-#### fs-extra
-https://github.com/jprichardson/node-fs-extra
 
-Node.js: extra methods for the fs object like copy(), remove(), mkdirs()
-
-```
-copy
-emptyDir
-ensureFile
-ensureDir
-ensureLink
-ensureSymlink
-mkdirp
-mkdirs
-move
-outputFile
-outputJson
-pathExists
-readJson
-remove
-writeJson
-```
 #### Glob
 https://github.com/isaacs/node-glob
 
