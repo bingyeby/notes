@@ -1,6 +1,15 @@
 
 ### linux下MySQL使用方法
+    Linux mysql 基础操作
+    https://www.cnblogs.com/xoray007/p/mysql_linux_database_use.html
+
+    linux下MySQL使用方法
     https://www.cnblogs.com/D666/p/9165088.html
+    
+    Linux下MySQL 数据库的基本操作
+    https://www.cnblogs.com/Glory-D/p/7518541.html
+
+    
 
 
 ### 创建用户并赋予权限
