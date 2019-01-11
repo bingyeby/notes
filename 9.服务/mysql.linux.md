@@ -1,12 +1,6 @@
-https://www.cnblogs.com/D666/p/9165088.html
-linux下MySQL使用方法
 
-
-mysql查看所有用户
-
-MySQL -uroot -p 
-select user,host from mysql.user;
-
+### linux下MySQL使用方法
+    https://www.cnblogs.com/D666/p/9165088.html
 
 
 ### 创建用户并赋予权限
