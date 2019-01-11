@@ -84,6 +84,11 @@ java -version
     通过curl命令，查看在服务器上是否能直接访问tomcat
     curl http://7.104.137.378:8989 
 
+    实时查看运行日志
+    cd /usr/local/tomcat/logs
+    tail -f catalina.out
+    
+
 
 #### tomcat 其他
 
@@ -205,7 +210,7 @@ vim /usr/local/tomcat/conf/server.xml
 
     前后端分离
         location /fm/ {
-          proxy_pass http://localhost:8080/;
+          proxy_pass http://localhost:8080/fm/;
         }
 
 
