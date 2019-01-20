@@ -237,7 +237,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 }
 ```
 
-#### 公共chunk 用于 入口chunk (entry chunk)
+#### 1. 公共chunk 用于 入口chunk (entry chunk)
 生成一个额外的 chunk 包含入口chunk 的公共模块。
 ```js
 new webpack.optimize.CommonsChunkPlugin('common.js'), // 默认会把所有入口节点的公共代码提取出来,生成一个common.js
@@ -257,8 +257,8 @@ new webpack.optimize.CommonsChunkPlugin({
 <script src="app.js" charset="utf-8"></script>
 ```
 
-#### 单独分离出第三方库、webpack运行文件  
-* 有选择的提取公共代码, 将代码拆分成公共代码和应用代码
+#### 2. 单独分离出第三方库、webpack运行文件  
+1. 有选择的提取公共代码, 将代码拆分成公共代码和应用代码
 ```js
 {
   entry: {
@@ -270,7 +270,8 @@ new webpack.optimize.CommonsChunkPlugin({
   ]
 }
 ```
-* 再次打包后的vendor文件hash值改变了，为了解决这个问题,加入runtime:
+
+2. 再次打包后的vendor文件hash值改变了，为了解决这个问题,加入runtime:
 ```js
 module.exports = {
 	entry: {
@@ -283,26 +284,31 @@ module.exports = {
 	]
 }
 ```
+
 或者:
 ```js
-new webpack.optimize.CommonsChunkPlugin({
-    name: ['vendor','runtime'],
-    filename: '[name].js'
-}),
+[
+  new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor','runtime'],
+      filename: '[name].js'
+  }),
+]
 //  等价于
-new webpack.optimize.CommonsChunkPlugin({
+[
+  new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     filename: '[name].js'
-}),
-new webpack.optimize.CommonsChunkPlugin({
-    name: 'runtime',
-    filename: '[name].js',
-    chunks: ['vendor']
-}),
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      filename: '[name].js',
+      chunks: ['vendor']
+  }),
+]
 ```
+
 打包后，会多出个runtime文件，但我们需要的vendor的hash值没有改变。 里面包含了 jsonp 方法的定义和其它 JS 的路径 mapping，因为你改了 app 会导致 runtime 里的路径改变，如果放在 vendor 中，会导致 vendor 无法长缓存。所以多出一个文件。
 
-##### runtime
 webpack中runtime和manifest主要用于管理所有模块的交互，主要是用于连接模块化应用程序的所有代码。
 
 管理模块交互的流程： 
@@ -314,7 +320,7 @@ runtime包含：
 * 功能:在模块交互时，连接模块所需的加载和解析逻辑，包括浏览器中已加载模块的连接以及懒加载模块的执行连接。
 * 文件:webpackJsonp  __webpack_require__  异步 chunk 加载函数  对 ES6 Modules 的默认导出（export default）做处理 
 
-#### 单独分离出第三方库、自定义公共模块、webpack运行文件
+#### 单独分离出 第三方库、自定义公共模块、webpack运行文件
 1. 第一种方法minChunks设为Infinity，修改webpack配置文件如下：
 ```js
 {
@@ -342,7 +348,7 @@ runtime包含：
 }
 ```
 
-2. 第二种方法把它们分离开来，就是利用minChunks作为函数的时候，说一下minChunks作为函数两个参数的含义：
+2. 第二种方法把它们分离开来，就是利用minChunks作为函数的时候，说一下minChunks作为函数两个参数的含义： 
 * module：当前chunk及其包含的模块
 * count：当前chunk及其包含的模块被引用的次数
 ```js
@@ -390,7 +396,7 @@ new webpack.optimize.CommonsChunkPlugin({
 ```
 
 
-### 缓存 moduleid chunckid
+### 缓存之稳定 moduleid chunckid
 [用 webpack 实现持久化缓存](https://sebastianblade.com/using-webpack-to-achieve-long-term-cache/#webpack)
 
 [基于 webpack 的持久化缓存方案](https://github.com/pigcan/blog/issues/9)
@@ -408,14 +414,15 @@ new webpack.optimize.CommonsChunkPlugin({
 
 一旦工程中模块有增删或者顺序变化，moduleId 就会发生变化，进而可能影响所有 chunk 的 content hash 值。只是因为 moduleId 变化就导致缓存失效，这肯定不是我们想要的结果。
 
-在 webpack4 以前，通过[NamedModulesPlugin|HashedModuleIdsPlugin]插件，我们可以将模块的路径映射成 hash 值，来替代 moduleId，因为模块路径是基本不变的，故而 hash 值也基本不变。
+在 webpack4 以前，通过[ NamedModulesPlugin | HashedModuleIdsPlugin ]插件，我们可以将模块的路径映射成 hash 值，来替代 moduleId，因为模块路径是基本不变的，故而 hash 值也基本不变。
 
-    NamedModulesPlugin 
-        这个模块可以将依赖模块的正整数 ID 替换为相对路径（如：将 4 替换为 ./node_modules/es6-promise/dist/es6-promise.js）。
-    HashedModuleIdsPlugin 
-        这是 NamedModulesPlugin 的进阶模块，它在其基础上对模块路径进行 MD5 摘要，不仅可以实现持久化缓存，同时还避免了它引起的两个问题（文件增大，路径泄露）。用 HashedModuleIdsPlugin 可以轻松地实现 chunkhash 的稳定化！
+1. NamedModulesPlugin 
+    这个模块可以将依赖模块的正整数 ID 替换为相对路径（如：将 4 替换为 ./node_modules/es6-promise/dist/es6-promise.js）。
+    
+2. HashedModuleIdsPlugin 
+    这是 NamedModulesPlugin 的进阶模块，它在其基础上对模块路径进行 MD5 摘要，不仅可以实现持久化缓存，同时还避免了它引起的两个问题（文件增大，路径泄露）。用 HashedModuleIdsPlugin 可以轻松地实现 chunkhash 的稳定化！
 
-    NamedModulesPlugin 适合在开发环境，而在生产环境下请使用 HashedModuleIdsPlugin。
+3. NamedModulesPlugin 适合在开发环境，而在生产环境下请使用 HashedModuleIdsPlugin。
 
 **但在 webpack4 中，只需要optimization的配置项中设置 moduleIds 为 hashed 即可。**
 
@@ -626,7 +633,7 @@ module.exports = config;
     UglifyJsPlugin
         new webpack.optimize.UglifyJsPlugin()
 
-### 哈希值的不同
+### hash的不同
 * hash 是 build-specific ，即每次编译都不同——适用于开发阶段
 * chunkhash 是 chunk-specific，是根据每个 chunk 的内容计算出的 hash——适用于生产
 * contenthash:extract-text-plugin 为抽离出来的内容提供了 contenthash 即： new ExtractTextPlugin('[name]-[contenthash].css')
@@ -634,6 +641,20 @@ module.exports = config;
 建议
 * 在生产环境，要把文件名改成'[name].[chunkhash]'，最大限度的利用浏览器缓存。
 * 不要在开发环境使用 [chunkhash]/[hash]/[contenthash]，因为不需要在开发环境做持久缓存，而且这样会增加编译时间，开发环境用 [name] 就可以了。
+
+### require.context()
+可以使用require.context（）函数创建自己的上下文。 它允许您传入一个目录进行搜索，一个标志指示是否应该搜索子目录，还有一个正则表达式来匹配文件。
+
+```js
+let contexts = require.context('.', false, /\.vue$/)  
+contexts.keys().forEach(component => {
+  let componentEntity = contexts(component).default
+  // 使用内置的组件名称 进行全局组件注册
+  Vue.component(componentEntity.name, componentEntity)
+})
+```
+
+
 
 
 
