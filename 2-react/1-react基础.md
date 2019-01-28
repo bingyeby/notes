@@ -229,3 +229,34 @@ https://www.jianshu.com/p/2514e215589b
 ### 你需要Mobx还是Redux？
 [你需要Mobx还是Redux？](http://blog.codingplayboy.com/2018/02/11/mobx-vs-redux/#i-2)
 使用mobx开发高性能react应用 http://foio.github.io/mobx-react/
+
+
+
+
+
+### 生命周期
+```
+开始 -> getDefaultProps  -> getInitState -> [componentWillMount render componentDidMount]  -> 
+
+props改变 ->  componentWillReceiveProps - > shouldComponentUpdate -> | (true) ->  [componentWillUpdate render componentDidUpdate] -> | componentWillUnMount -> 卸载
+state改变 - - - - - - - - - - - - - - - - >                          | (false) - - - - - - - - - - - - - - - - - - - - - - - - - ->  |   
+
+
+```
+
+componentWillReceiveProps: function(nextProps) { this.setState({ likesIncreasing: nextProps.likeCount > this.props.likeCount }); }
+* 在组件接收到新的 props 的时候调用。在初始化渲染的时候，该方法不会调用。
+* 用此函数可以作为 react 在 prop 传入之后， render() 渲染之前更新 state 的机会。老的 props 可以通过 this.props 获取到。在该函数中调用 this.setState() 将不会引起第二次渲染。
+
+shouldComponentUpdate: function(nextProps, nextState) { return nextProps.id !== this.props.id; }
+* 如果 shouldComponentUpdate 返回 false，则componentWillUpdate render componentDidUpdate 将不会执行，直到下一次 state 改变。 
+* 默认情况下，shouldComponentUpdate 总会返回 true
+* 使用 shouldComponentUpdate 可以提升应用的性能。
+
+componentWillUpdate(object nextProps, object nextState)
+* 你不能在刚方法中使用 this.setState()。如果需要更新 state 来响应某个 prop 的改变，请使用 componentWillReceiveProps。
+
+componentDidUpdate(object prevProps, object prevState)
+* 在组件的更新已经同步到 DOM 中之后立刻被调用。该方法不会在初始化渲染的时候调用。
+
+
