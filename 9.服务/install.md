@@ -175,6 +175,11 @@ vim /usr/local/tomcat/conf/server.xml
     firewall-cmd --zone=public --remove-port=80/tcp --permanent
 
 ### nginx 安装 
+
+    Ubuntu 16.04安装Nginx
+    https://www.cnblogs.com/EasonJim/p/7806879.html
+    
+    centos 安装Nginx
     https://www.cnblogs.com/jimisun/p/8057156.html
 
     yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
@@ -213,6 +218,13 @@ vim /usr/local/tomcat/conf/server.xml
           proxy_pass http://localhost:8080/fm/;
         }
 
+### ngnix 开启gzip
+    gzip  on;   #开启gzip
+    gzip_min_length 1k; #低于1kb的资源不压缩
+    gzip_comp_level 3; #压缩级别【1-9】，越大压缩率越高，同时消耗cpu资源也越多，建议设置在4左右。
+    gzip_types text/plain application/javascript application/x-javascript text/javascript text/xml text/css;  
+    gzip_disable "MSIE [1-6]\.";  #配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
+    gzip_vary on;  #是否添加“Vary: Accept-Encoding”响应头 
 
 ### node
     wget http://cdn.npm.taobao.org/dist/node/v10.15.0/node-v10.15.0-linux-x64.tar.xz
@@ -255,3 +267,7 @@ sudo uname -m
 i686    //表示是32位
 x86_64  // 表示是64位
 ```
+
+
+### 腾讯云ubuntu系统获取root权限
+https://blog.csdn.net/daijiguo/article/details/51558863
