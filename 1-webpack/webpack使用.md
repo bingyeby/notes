@@ -9,6 +9,8 @@
 
 [Webpack 性能优化 (一)(使用别名做重定向)](http://www.ituring.com.cn/article/200534)
 
+
+[随笔分类 - webpack源码系列](https://www.cnblogs.com/QH-Jimmy/category/1129698.html)
 ### webpack核心概念
 Manifest  模板热替换  代码分离(code splitting) 模板(Modules)
 

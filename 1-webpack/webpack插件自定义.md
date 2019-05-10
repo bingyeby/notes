@@ -141,7 +141,6 @@ class AnalyzeWebpackPlugin {
 es5:
 ```js
 //  定义
-
 function HelloWorldPlugin(options) {
   // Setup the plugin instance with options...
 }
@@ -155,7 +154,6 @@ HelloWorldPlugin.prototype.apply = function(compiler) {
 module.exports = HelloWorldPlugin;
 
 // 使用  
-
 var HelloWorldPlugin = require('hello-world');
 
 var webpackConfig = {
