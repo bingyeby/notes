@@ -2,6 +2,9 @@
     https://www.w3cplus.com/vue/vue-two-way-binding.html
     Vue的双向绑定原理及实现
 
+    https://segmentfault.com/a/1190000019153289
+    一张思维导图辅助你深入了解 Vue | Vue-Router | Vuex 源码架构
+
 ### mvvm模型
            -------------------
     view   |  dom listeners  |     model

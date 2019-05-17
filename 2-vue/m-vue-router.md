@@ -2,8 +2,10 @@
 ## 相关知识
 	https://segmentfault.com/a/1190000007825106  
 	Vue-router2.0学习笔记  
-	http://blog.csdn.net/github_26672553/article/details/54861174  
+
+	http://blog.csdn.net/github_26672553/article/details/54861174 
 	vue-router： 嵌套路由 的实现案例   
+	
 	https://juejin.im/post/59ffb4b66fb9a04512385402#heading-0  
 	vue面试题总汇
 
