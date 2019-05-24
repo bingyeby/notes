@@ -69,3 +69,7 @@ git show
     git reset 是直接删除指定的commit
         reset 是在正常的commit历史中删除了指定的commit HEAD后移
 
+### 强制回退至远程某代码
+    git fetch --all
+    git reset --hard origin/master    [git reset --hard uu/test]
+    git pull
