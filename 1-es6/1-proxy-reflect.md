@@ -95,7 +95,7 @@ let handler = {
 }
 let proxy = new Proxy(target, handler)
 console.log(proxy.name)
-proxy.name = '大漠' 
+proxy.name = 'test' 
 console.log(proxy.name)
 proxy.count = 1 
 proxy.count++
@@ -105,7 +105,7 @@ console.log(proxy.count)
 // undefined
 // Setting name!
 // Getting name!
-// 大漠
+// test
 // Setting count!
 // Getting count!
 // Setting count!

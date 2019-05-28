@@ -12,8 +12,11 @@
 
 [随笔分类 - webpack源码系列](https://www.cnblogs.com/QH-Jimmy/category/1129698.html)
 
-https://juejin.im/post/5bd2d2315188252734475575
-webpack 插件总结归类
+    https://juejin.im/post/5bd2d2315188252734475575
+    webpack 插件总结归类
+
+    https://www.qdfuns.com/article/51786/4fdd5cef4dde185a82b551c6a7471f24.html
+    webpack常用优化配置
 
 ### webpack核心概念
 Manifest  模板热替换  代码分离(code splitting) 模板(Modules)
