@@ -88,3 +88,90 @@
 ![](../images/vue-instances-and-life-cycles-8.png)
 
 
+### vue总结原理性质总结
+    https://juejin.im/post/5cd0bdfc6fb9a031f10ca08c#heading-17
+
+    vue双向数据绑定
+        vue.js 是采用'数据劫持'结合'发布者-订阅者模式'的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
+        第一步：需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter。这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化；
+        第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图；
+        第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是:
+            1、在自身实例化时往属性订阅器(dep)里面添加自己
+            2、自身必须有一个update()方法
+            3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。
+        第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，
+            通过Observer来监听自己的model数据变化，
+            通过Compile来解析编译模板指令，
+            最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
+
+
+    vue生命周期的执行过程
+        首先创建一个vue实例，Vue()；
+        在创建Vue实例的时候，执行了init()，在init过程中首先调用了beforeCreate。
+        Created之前，对data内的数据进行了数据监听，并且初始化了Vue内部事件。具体如下：
+            1. 完成了数据观测；
+            2. 完成了属性和方法的运算；
+            3. 完成了watch/event事件的回调；
+            4. 但是此时还未挂载dom上，$el属性是不可见的；
+
+        beforeMount之前，完成了模板的编译。把data对象里面的数据和vue的语法写的模板编译成了html，但是此时还没有将编译出来的html渲染到页面；
+            1. 在实例内部有template属性的时候，直接用内部的，然后调用render函数去渲染。
+            2. 在实例内部没有找到template，就调用外部的html（“el”option（选项））。实例内部的template属性比外部的优先级高。 render函数 > template属性 > 外部html；
+            3. 要是前两者都不满足，那么就抛出错误。
+
+        Mounted之前执行了render函数，将渲染出来的内容挂载到了DOM节点上。mounted是将html挂载到页面完成后触发的钩子函数；当mounted执行完毕，整个实例算是走完了流程；在整个实例过程中，mounted仅执行一次；
+        beforeUpdate：数据发生变化时，会调用beforeUpdate，然后经历virtual DOM，最后updated更新完成；
+        beforeDestory是实例销毁前钩子函数，销毁了所有观察者，子组件以及事件监听；
+        destoryed实例销毁执行的钩子函数；
+
+    
+    钩子函数
+        beforeCreate：初始化了部分参数，如果有相同的参数，做了参数合并，执行 beforeCreate；el和数据对象都为undefined，还未初始化；
+        created ：初始化了 Inject 、Provide 、 props 、methods 、data 、computed 和 watch，执行 created ；data有了，el还没有；
+        beforeMount ：检查是否存在 el 属性，存在的话进行渲染 dom 操作，执行 beforeMount；$el和data都初始化了，但是dom还是虚拟节点，dom中对应的数据还没有替换；
+        mounted ：实例化 Watcher ，渲染 dom，执行 mounted ；vue实例挂载完成，dom中对应的数据成功渲染；
+        beforeUpdate ：在渲染 dom 后，执行了 mounted 钩子后，在数据更新的时候，执行 beforeUpdate ；
+        updated ：检查当前的 watcher 列表中，是否存在当前要更新数据的 watcher ，如果存在就执行 updated ；
+        beforeDestroy ：检查是否已经被卸载，如果已经被卸载，就直接 return 出去，否则执行 beforeDestroy ；
+        destroyed ：把所有有关自己痕迹的地方，都给删除掉；
+
+    Vue.js的template编译
+    数据到视图的整体流程
+
+    vue组件间的七种交互
+        1. props和$emit
+        2.特性绑定$attrs和$listeners
+        3.中央事件总线 Events Bus
+        4.依赖注入：provide和inject
+        5.v-model
+        6.子组件引用：ref和$refs
+        7.父链和子索引：$parent和$children
+        8.vue1中boradcast和dispatch
+        9.vuex
+
+    vuex原理
+        vuex利用了vue的mixin机制，混合 beforeCreate 钩子 将store注入至vue组件实例上，并注册了 vuex store的引用属性 $store！
+        vuex的state是借助vue的响应式data实现的。
+        getter是借助vue的计算属性computed特性实现的。
+        其设计思想与vue中央事件总线如出一辙。
+
+    Vue-router 中hash模式和history模式的区别
+        hash模式url里面永远带着#号，我们在开发当中默认使用这个模式。那么什么时候要用history模式呢？如果用户考虑url的规范那么就需要使用history模式，因为history模式没有#号，是个正常的url适合推广宣传。
+        当然其功能也有区别，比如我们在开发app的时候有分享页面，那么这个分享出去的页面就是用vue或是react做的，咱们把这个页面分享到第三方的app里，有的app里面url是不允许带有#号的，所以要将#号去除那么就要使用history模式，但是使用history模式还有一个问题就是，在访问二级页面的时候，做刷新操作，会出现404错误，那么就需要和后端人配合让他配置一下apache或是nginx的url重定向，重定向到你的首页路由上就ok啦。
+        路由的哈希模式其实是利用了window可以监听onhashchange事件，也就是说你的url中的哈希值（#后面的值）如果有变化，前端是可以做到监听并做一些响应（搞点事情），这么一来，即使前端并没有发起http请求他也能够找到对应页面的代码块进行按需加载。
+        pushState与replaceState，这两个神器的作用就是可以将url替换并且不刷新页面，好比挂羊头卖狗肉，http并没有去请求服务器该路径下的资源，一旦刷新就会暴露这个实际不存在的“羊头”，显示404。这就需要服务器端做点手脚，将不存在的路径请求重定向到入口文件（index.html）。
+
+
+
+
+### 虚拟dom
+    让虚拟DOM和DOM-diff不再成为你的绊脚石
+    https://juejin.im/post/5c8e5e4951882545c109ae9c
+
+    总结：
+        用JS对象模拟DOM（虚拟DOM）
+        把此虚拟DOM转成真实DOM并插入页面中（render）
+        如果有事件发生修改了虚拟DOM，比较两棵虚拟DOM树的差异，得到差异对象（diff）
+        把差异对象应用到真正的DOM树上（patch）
+
+### 
