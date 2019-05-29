@@ -1,3 +1,5 @@
+https://www.cnblogs.com/webbest/p/8268115.html
+
 拆分数组
 _.chunk([0,1,2,3,5,6],2)    
 

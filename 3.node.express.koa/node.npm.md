@@ -605,3 +605,16 @@ nide
 [单元测试](https://wanghx.cn/blog/progressive/lesson1.html#单元测试)
 
 
+
+
+### dotenv:从文件加载环境变量
+	使用dotenv，我们只需要将程序的环境变量配置写在.env文件中 DB_HOST=localhost
+	在Node.js程序启动时运行	require('dotenv').config()
+	接着，我们就可以在接下来的程序中方便地使用环境变量了 process.env.DB_HOST
+	https://segmentfault.com/a/1190000012826888
+	
+	
+### 批量导入
+	require-directory	下载使用量更大 最近更新较久远
+	require-dir	
+	

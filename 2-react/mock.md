@@ -1,6 +1,4 @@
 
-
-
 ```js
 import mockjs from 'mockjs';
  

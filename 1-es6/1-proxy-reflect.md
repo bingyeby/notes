@@ -3,8 +3,10 @@
 ### www
     https://www.w3cplus.com/javascript/es6-proxy-reflect.html
     ES6学习笔记： 代理和反射 (对使用方法有详细的示例)
+
     https://www.w3cplus.com/javascript/proxy-reflect.html
     代理(Proxy)和反射(Reflection)
+    
     https://www.w3cplus.com/vue/vue-proxying.html
     Vue 2.0的学习笔记： Vue中的代理Proxy
 
@@ -95,7 +97,7 @@ let handler = {
 }
 let proxy = new Proxy(target, handler)
 console.log(proxy.name)
-proxy.name = '大漠' 
+proxy.name = 'test' 
 console.log(proxy.name)
 proxy.count = 1 
 proxy.count++
@@ -105,7 +107,7 @@ console.log(proxy.count)
 // undefined
 // Setting name!
 // Getting name!
-// 大漠
+// test
 // Setting count!
 // Getting count!
 // Setting count!
