@@ -243,11 +243,9 @@ class BasicPlugin{
       callback()
     }
     // 检测是否是webpack4
-    if (compiler.hooks) {
-      // 注册emit事件的监听函数 webpack4
+    if (compiler.hooks) { // 注册emit事件的监听函数 webpack4
       compiler.hooks.emit.tapAsync(this.constructor.name, onEmit)
-    } else {
-      // 注册emit事件的监听函数 webpack3及之前
+    } else { // 注册emit事件的监听函数 webpack3及之前
       compiler.plugin('emit', onEmit)
     }
   }
