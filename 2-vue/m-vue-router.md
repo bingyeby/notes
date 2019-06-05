@@ -11,28 +11,29 @@
 
 ## vue router的简单使用
 ### 实现步骤
-	// 0. 导入Vue和VueRouter
-	Vue.use(VueRouter)
-	// 1. 定义（路由）组件。 可以从其他文件 import 进来
-	const Foo = { template: '<div>foo</div>' }
-	const Bar = { template: '<div>bar</div>' }
-	// 2. 定义路由
-	// 3. 创建 router 实例
-	const router = new VueRouter({
-		routes :[ { path: '/foo', component: Foo }, { path: '/bar', component: Bar } ]
-	})
-	// 4. 创建和挂载根实例。
-	const app = new Vue({
-		router
-	}).$mount('#app')
-	// 4. 创建
-	const app = new Vue({
-		el: "#app",
-		router
-	})
+```js
+// 0. 导入Vue和VueRouter
+Vue.use(VueRouter)
+// 1. 定义（路由）组件。 可以从其他文件 import 进来
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+// 2. 定义路由
+// 3. 创建 router 实例
+const router = new VueRouter({
+	routes :[ { path: '/foo', component: Foo }, { path: '/bar', component: Bar } ]
+})
+// 4. 创建和挂载根实例。
+const app = new Vue({
+	router
+}).$mount('#app')
+// 4. 创建
+const app = new Vue({
+	el: "#app",
+	router
+})
 
+```
 ### 关于动态路由匹配规则
-
 
 ### 一个组件匹配不同的路由
 	我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。那么，我们可以在 vue-router 的路由路径中使用『动态路径参数』（dynamic segment）来达到这个效果：
@@ -107,11 +108,11 @@
 	参数或查询的改变并不会触发进入/离开的导航守卫； 你可以通过观察 $route 对象来应对这些变化，或使用 beforeRouteUpdate 的组件内守卫。
 	有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
 	1.全局导航钩子：
-		router.beforeEach((to, from, next) => { // ... }) // 全局前置守卫 作用：跳转前进行判断拦截。
-		router.afterEach((to, from) => { // ... }) // 你也可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 next 函数也不会改变导航本身
+		router.beforeEach((to, from, next) => { ... }) // 全局前置守卫 作用：跳转前进行判断拦截。
+		router.afterEach((to, from) => { ... }) // 你也可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 next 函数也不会改变导航本身
 	2.单独路由独享new VueRouter({routes:[{beforeEnter:function(){}}]})
 		const router = new VueRouter({ routes: [ 
-			{ path: '/foo', component: Foo, beforeEnter: (to, from, next) => { // ... } }
+			{ path: '/foo', component: Foo, beforeEnter: (to, from, next) => { ... } }
 		]})
 	3.组件内部的钩子：new vue({ beforeRouteEnter(){} })
 		beforeRouteEnter 
