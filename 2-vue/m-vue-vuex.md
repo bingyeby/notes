@@ -14,9 +14,7 @@
     // 触发组件 A 中的事件
     bus.$emit('id-selected', 1)
     // 在组件 B 创建的钩子中监听事件
-    bus.$on('id-selected', function (id) {
-    // ...
-    })
+    bus.$on('id-selected', function (id) {  ... })
     在复杂的情况下，我们应该考虑使用专门的状态管理模式。
 
 ### vuex的简单使用
@@ -66,6 +64,11 @@
     Vuex 是专门为 Vue.js 设计的状态管理库，以利用 Vue.js 的细粒度数据响应机制来进行高效的状态更新。
     state getter mutation action
     module
+
+### 特性
+    1. vuex 的 store 特性是什么vuex 就是一个仓库，仓库里放了很多对象。 其中 state 就是数据源存放地，对应于一般 vue 对象里面的 data
+    2. state 里面存放的数据是响应式的， vue 组件从 store 读取数据，若是 store 中的数据发生改变，依赖这相数据的组件也会发生更新
+    3. 它通过 mapState 把全局的 state 和 getters 映射到当前组件的 computed 计算属性
 
 ### state
     说明

@@ -1,5 +1,3 @@
-
-
 ### www
     官方API文档
     https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/
@@ -68,9 +66,3 @@
 
     pullUpLoad 类型：Boolean | Object 默认值：false
         作用：这个配置用于做上拉加载功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启上拉加载，可以配置离底部距离阈值（threshold）来决定开始加载的时机，见 Demo 。了解更多的细节可以去看 example 中的 scroll 组件代码。
-
-
-百度地图 1.2
-
-http rfc 
-    缓存 cachcontroll 
