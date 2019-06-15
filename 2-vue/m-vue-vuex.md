@@ -306,10 +306,6 @@
         }
     一个 store.dispatch 在不同模块中可以触发多个 action 函数。在这种情况下，只有当所有触发函数完成后，返回的 Promise 才会执行。
 
-
-
-
-
 ## 总结
 ### 项目结构:
     Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：
@@ -326,4 +322,3 @@
     const store = new Vuex.Store({ strict: process.env.NODE_ENV !== 'production' })
 
 ### 应用小结
-    
