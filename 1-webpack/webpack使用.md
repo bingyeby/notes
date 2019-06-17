@@ -600,15 +600,15 @@ module.exports = config;
 ```js
     import(/* webpackChunkName: "swiper" */ 'swiper/dist/css/swiper.min.css')
     import(/* webpackChunkName: "swiper" */ 'swiper').then(Swiper => {
-      var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        freeMode: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      });
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            freeMode: true,
+            pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            },
+        });
     })
 ```
 
@@ -663,7 +663,27 @@ contexts.keys().forEach(component => {
 })
 ```
 
+### babel-plugin-import 插件 的使用
+babel-plugin-import   是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式
+```bash
+# 安装 babel-plugin-import 插件
+npm i babel-plugin-import -D
+```
+```js
+// 在 .babelrc 或 babel-loader 中添加插件配置
+// 注意：webpack 1 无需设置 libraryDirectory
+{
+  "plugins": [
+    ["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }]
+  ]
+}
+```
 
 
-
-
+### svg-sprite-loader
+    手摸手，带你优雅的使用 icon
+    https://juejin.im/post/59bb864b5188257e7a427c09
