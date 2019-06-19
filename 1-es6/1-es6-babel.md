@@ -87,9 +87,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 ./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
 ```
 ```
-    {
-        "plugins": ["@babel/plugin-transform-arrow-functions"]
-    }
+    { "plugins": ["@babel/plugin-transform-arrow-functions"] }
 ```
 
 * 如果想要转换代码中还有其他 ES2015+ 功能。我们可以使用 "preset" 来代替预先设定的一组插件，而不是逐一添加我们想要的所有插件。
@@ -111,8 +109,8 @@ A Babel preset is a shareable list of plugins,也就是一堆plugins的预设，
 ### plugins/presets排序
     plugins和presets编译，也许会有相同的功能，或者有联系的功能，按照怎么的顺序进行编译？答案是会按照一定的顺序。
     具体而言，plugins优先于presets进行编译。
-        plugins按照数组的index增序(从数组第一个到最后一个)进行编译。
-        presets按照数组的index倒序(从数组最后一个到第一个)进行编译。因为作者认为大部分会把presets写成["es2015", "stage-0"]。具体细节可以看这个。
+        plugins正序进行编译。
+        presets逆序进行编译。{presets:["es2015", "stage-0"]}
 
 
 ## babel转译器
@@ -188,7 +186,7 @@ babel-plugin-transform-runtime主要做了一下三件事：
 
 不需要额外的配置就是使用默认配置，这样就可以。所以babel-plugin-transform-runtime不会污染全局环境，一般用在webpack打包的node中。正是因为此，transform-runtime被广泛用于第三方库中。
 
-安装babel-plugin-transform-runtime回默认安装babel-runtime（所有的帮助函数都在这个包中）。
+安装babel-plugin-transform-runtime会默认安装babel-runtime（所有的帮助函数都在这个包中）。
 
 #### 举例说明
 Babel 转译后的代码要实现源代码同样的功能需要借助一些帮助函数，例如，{ [name]: 'JavaScript' } 转译后的代码如下所示：
@@ -314,7 +312,11 @@ Babel 7 于今天发布  2018-09-02  https://www.w3ctech.com/topic/2150
     "plugins": ["@babel/proposal-class-properties"]
 }
 ```
-React组件类中的方法的this绑定到组件本身，如果不用箭头函数，我们就需要使用bind将函数一个个绑定好，但如果可以使用箭头函数在class字段中直接绑定的话，就非常方便了:
+因为我们经常需要将React组件类中的方法的this绑定到组件本身
+
+如果不用箭头函数，我们就需要使用bind将函数一个个绑定好，但如果可以使用箭头函数在class字段中直接绑定的话，就非常方便了. 这样，箭头函数被当作成class的属性来看待，this也不会指向undefined。
+
+这个特性就需要babel-plugin-transform-class-properties来转译，这个插件在原来是包含在stage-2里面的，现在，就需要单独引入。
 ```
 class Bork {
     boundFunction = () => {
@@ -328,9 +330,7 @@ class Bork {
 
 If you are using Babel version 7 you will need to run npm install @babel/preset-env and have "presets": ["@babel/preset-env"] in your configuration.
 
-
 babel 7 中说明删除提案polyfill @babel/polyfill 结合 @babel/runtime-corejs2 + @babel/plugin-transform-runtime 插件使用
-
 
 
 ### babel-preset-es2015 -> babel-preset-env
@@ -513,7 +513,7 @@ Installing new dependencies
 
 ```
 
-### 按需加载
+### 按需加载 babel-plugin-import
 https://github.com/ant-design/babel-plugin-import
 
     如果你在开发环境的控制台看到下面的提示，那么你可能使用了 import { Button } from 'antd'; 的写法引入了 antd 下所有的模块，这会影响应用的网络性能。
