@@ -8,11 +8,12 @@ _.concat([1,2,3,4],1)
 _.concat([1,2,3,4],[12,3])
 
 
-### findIndex findLastIndex
+```js
+// findIndex findLastIndex
 var users = [
-  { 'user': 'barney',  'active': false },
-  { 'user': 'fred',    'active': false },
-  { 'user': 'pebbles', 'active': true }
+    { 'user': 'barney',  'active': false },
+    { 'user': 'fred',    'active': false },
+    { 'user': 'pebbles', 'active': true }
 ];
 _.findIndex(users, function(o) { return o.user == 'barney'; });
 _.findIndex(users, ['active', false]);
@@ -34,7 +35,7 @@ _.nth(array, -2);
 
 
 _.remove(array, function(n) {
-  return n % 2 == 0;
+    return n % 2 == 0;
 });
 
 _.tail([1, 2, 3]); // => [2, 3] 获取除了array数组第一个元素以外的全部元素。
@@ -93,8 +94,8 @@ _.result(object, 'a[0].b.c1'); // => 3
 _.result(object, 'a[0].b.c3', 'default'); // => 'default'   默认值
 
 var objects = [
-  { 'a': 1, 'b': 2, 'c': 3 },
-  { 'a': 4, 'b': 5, 'c': 6 }
+    { 'a': 1, 'b': 2, 'c': 3 },
+    { 'a': 4, 'b': 5, 'c': 6 }
 ];
 _.filter(objects, _.matches({ 'a': 4, 'c': 6 })); // => [{ 'a': 4, 'b': 5, 'c': 6 }]
 
@@ -108,3 +109,6 @@ _.defaultsDeep(object, [sources])
 
 _.range([start=0], end, [step=1]) // 创建一个包含从 start 到 end，但不包含 end 本身范围数字的数组。
 _.times(n, [iteratee=_.identity]) // 
+
+
+```
