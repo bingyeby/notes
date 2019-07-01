@@ -687,3 +687,7 @@ npm i babel-plugin-import -D
 ### svg-sprite-loader
     手摸手，带你优雅的使用 icon
     https://juejin.im/post/59bb864b5188257e7a427c09
+
+
+### 如何使用expose-loader 解决第三方库的插件依赖问题
+    https://blog.csdn.net/lizixiang1993/article/details/52193724

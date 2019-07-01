@@ -1,8 +1,12 @@
 ### 相关信息
-官方文档	https://github.com/dagrejs/dagre-d3/wiki
-简单实例	https://blog.csdn.net/qq_30227429/article/details/79878660
+    https://github.com/dagrejs/dagre-d3/wiki
+    官方文档	
 
-设置节点组或区域	https://dagrejs.github.io/project/dagre-d3/latest/demo/clusters.html
+    https://blog.csdn.net/qq_30227429/article/details/79878660
+    简单实例	
+
+    https://dagrejs.github.io/project/dagre-d3/latest/demo/clusters.html
+    设置节点组或区域	
 
 ### 简易代码
 1. 设置节点信息
@@ -156,7 +160,7 @@ svg.attr('height', g.graph().height * initialScale + 40)
 ```
 
 ### 手动放大缩小设置 
-```jsx
+```html
 <div onClick={(n) => {
   let zoomValue = d3.select('#svg').property('__zoom')
   zoomValue.k = zoomValue.k * 1.1
