@@ -366,56 +366,56 @@ https://blog.csdn.net/sinat_38334334/article/details/80013648
 
 
 #### nrm
-查看npm源地址，在终端输入以下命令
+    查看npm源地址，在终端输入以下命令
 
-npm config list
+    npm config list
 
-会看到官方的npm源
+    会看到官方的npm源
 
-metrics-registry = "https://registry.npmjs.org/"
+    metrics-registry = "https://registry.npmjs.org/"
 
-国内常用的镜像地址如淘宝npm：https://registry.npm.taobao.org/
+    国内常用的镜像地址如淘宝npm：https://registry.npm.taobao.org/
 
-修改registry地址
+    修改registry地址
 
-npm set registry https://registry.npm.taobao.org/
+    npm set registry https://registry.npm.taobao.org/
 
-删掉它
+    删掉它
 
-npm config rm registry
+    npm config rm registry
 
-nrm是专门用来管理和快速切换私人配置的registry
+    nrm是专门用来管理和快速切换私人配置的registry
 
-建议全局安装
+    建议全局安装
 
-npm install nrm -g --save
+    npm install nrm -g --save
 
-nrm有一些默认配置，用nrm ls命令查看默认配置，带*号即为当前使用的配置
+    nrm有一些默认配置，用nrm ls命令查看默认配置，带*号即为当前使用的配置
 
-nrm ls
+    nrm ls
 
-也可以直接输入以下命令查看当前使用的是哪个源
+    也可以直接输入以下命令查看当前使用的是哪个源
 
-nrm current
+    nrm current
 
-切到源http://r.cnpmjs.org/，命令：nrm use 源的别名，即
+    切到源http://r.cnpmjs.org/，命令：nrm use 源的别名，即
 
-nrm use cnpm
+    nrm use cnpm
 
-执行成功提示
+    执行成功提示
 
-Registry has been set to: http://r.cnpmjs.org/
-用nrm add 命令添加公司私有npm源，如http://registry.npm.360.org(随便写的)，起个别名叫qihoo
+    Registry has been set to: http://r.cnpmjs.org/
+    用nrm add 命令添加公司私有npm源，如http://registry.npm.360.org(随便写的)，起个别名叫qihoo
 
-nrm add qihoo http://registry.npm.360.org
+    nrm add qihoo http://registry.npm.360.org
 
-测试: nrm test npm
+    测试: nrm test npm
 
-输出:npm ---- 1547ms
+    输出:npm ---- 1547ms
 
-删除
+    删除
 
-nrm del qihoo 
+    nrm del qihoo 
 
 
 #### es-checker
