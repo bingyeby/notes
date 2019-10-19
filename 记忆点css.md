@@ -188,50 +188,19 @@ word-break:break-all;// 控制单行过长文字在固定长度下换行
 	平文本可以配合white-space: pre-wrap来解决多空格压缩显示问题
 	富文本采用的解决方案是对空格进行间隔html转义，这种方法更灵活，可以适应不同的场景，也适用于平文本。
 
-
-### CSS多行文字超出隐藏加省略号
-	1:
-	h2 {
-		display: block;
-		display: -webkit-box;
-		max-width: 400px;
-		height: 109.2px;
-		margin: 0 auto;
-		font-size: 26px;
-		line-height: 1.4;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	2:
-	p {
-		position:relative;
-		line-height:20px;
-		max-height:40px;
-		overflow:hidden;
-	}
-	p::after {
-		content: "\02026";      // '...'
-		position:absolute;
-		bottom:0;
-		right:0;
-		padding-left:40px;
-		background:-webkit-linear-gradient(left,transparent,#fff 55%);
-		background:-o-linear-gradient(right,transparent,#fff 55%);
-		background:-moz-linear-gradient(right,transparent,#fff 55%);
-		background:linear-gradient(to right,transparent,#fff 55%);
-	}
-
-	适用范围：
-	该方法适用范围广，但文字未超出行的情况下也会出现省略号,可结合js优化该方法。
-
-	注：
-	将height设置为line-height的整数倍，防止超出的文字露出。
-	给p::after添加渐变背景可避免文字只显示一半。
-由于ie6-7不显示content内容，所以要添加标签兼容ie6-7（如：<span>…<span/>）；兼容ie8需要将::after替换成:after。
-
+### 单行文本两端对齐
+    p{
+        text-align:justify;
+        text-align-last:justify;
+        height:24px;
+    }
+    p:after{
+        display:inline-block;
+        content:'';
+        overflow:hidden;
+        width:100%;
+        height:0;
+    }
 
 ### 响应式布局的写法
 	@media screen and (min-width:600px){}

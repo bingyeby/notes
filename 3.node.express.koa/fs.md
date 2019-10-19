@@ -65,6 +65,11 @@ fs.open('./mess.txt','w',function(err,fd){
 * createReadStream方法创建一个将文件内容读取为流数据的ReadStream对象
 * createWriteStream方法创建一个将流数据写入文件中的WriteStream对象
 
+```js
+let writerStream = fs.createWriteStream('test.json');
+writerStream.write(JSON.stringify({a:'11'}, undefined, 2), 'UTF8');
+writerStream.end();
+```
 ### 中文汉字占二个字节还是三个字节长度
     英文字母
         字节数 : 1;编码：GB2312
