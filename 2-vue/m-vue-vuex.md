@@ -70,7 +70,7 @@
     2. state 里面存放的数据是响应式的， vue 组件从 store 读取数据，若是 store 中的数据发生改变，依赖这相数据的组件也会发生更新
     3. 它通过 mapState 把全局的 state 和 getters 映射到当前组件的 computed 计算属性
 
-### state
+### state mapState
     说明
         vuex使用单一状态树（一个对象）就包含了全部的应用级状态；
         一个应用只存在一个store实例；
@@ -102,6 +102,49 @@
                 computed: mapState([ 'count' ])  // 映射 this.count 为 store.state.count
             3.2 mapState 函数返回的是一个对象，通过扩展运算符将它与局部计算属性混合使用：
                 computed: { ...mapState({  }) }
+
+### 组件中使用state
+
+```html
+<div class="test">
+    {{$store.state.count}}  <!--直接使用-->
+</div>
+```
+
+```html
+<template>
+  <div class="test">
+    {{count}}  <!--mapState使用-->
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import {mapState} from 'vuex' //2.1
+  export default{
+    name:'test',
+    data(){
+      return{}
+    },
+    computed:{
+      count(){
+        return this.$store.state.count; //1
+      }
+    }
+    computed:mapState({         //2.1
+      count:state => state.count
+    })
+    computed:mapState([        //3
+      "count"
+    ])
+    computed:{
+      ...mapState([             //4
+        "count"
+      ])
+    }
+  }
+</script>
+```
+
 
 
 ### getter

@@ -228,10 +228,20 @@ https://github.com/jprichardson/node-fs-extra
 Node.js: extra methods for the fs object like copy(), remove(), mkdirs()
 
 ```
-copy
-emptyDir
+copy    copySync
+    Copy a file or directory. The directory can have contents. Like cp -r.
+    await fs.copy('/tmp/myfile', '/tmp/mynewfile', {overwrite, errorOnExist, dereference, preserveTimestamps, filter})
+
+emptyDir        
+    Ensures that a directory is empty. Deletes directory contents if the directory is not empty. If the directory does not exist, it is created. The directory itself is not deleted.
+
 ensureFile
+    Ensures that the file exists. If the file that is requested to be created is in directories that do not exist, these directories are created. If the file already exists, it is NOT MODIFIED.
+
+    fss.ensureFileSync(__dirname + '/result/test.json') // 允许嵌套
+
 ensureDir
+    Ensures that the directory exists. If the directory structure does not exist, it is created. Like mkdir -p.
 ensureLink
 ensureSymlink
 mkdirp
@@ -622,3 +632,6 @@ nide
 ### 镜像配置
    为中国内地的Node.js开发者准备的镜像配置，大大提高node模块安装速度。
     https://www.npmjs.com/package/mirror-config-china
+
+### 查看对版本的支持
+    https://kangax.github.io/compat-table/es6/
