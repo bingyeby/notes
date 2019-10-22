@@ -2,9 +2,19 @@
 	https://juejin.im/post/5cf495e96fb9a07ef5622025
 	公司要求会使用框架vue，面试题会被问及哪些？
 
+    https://juejin.im/post/5d59f2a451882549be53b170
+    30 道 Vue 面试题，内含详细讲解（涵盖入门到精通，自测 Vue 掌握程度）
+
     https://github.com/answershuto/learnVue/blob/master/docs/Vue组件间通信.MarkDown
     https://github.com/answershuto/learnVue/tree/master/docs
     Vue.js学习及源码分析
+
+
+    https://www.mmxiaowu.com/article/584820f6d4352863efb55459
+    前端收藏夹
+
+    https://blog.csdn.net/liangrongliu1991/article/details/100523879
+    Vue 的小奇技
 
 ### methods computed watch
     在Vue中有三种方法可以让你的组件使用Vue的响应性。这些是methods、computed和watch
@@ -23,50 +33,64 @@
 |--------------------------------
 ```
 ```js
+
 let app = new Vue({
-  el: '#app',
-  data () {
-    return {
-      newTest: { studentName: 'Jack', score: 0 },
-      tests: [
-        { studentName: 'Billy', score: 76 }, { studentName: 'Suzy', score: 85 }, { studentName: 'Emma', score: 93 }
-      ]
-    }
-  },
-  watch: {
-    averageScore: function () {
-      this.autoSave()
-    }
-  },
-  computed: {
-    totalScore: function () { 
-      let totalArray = this.tests.reduce((acc, test) => {
-        return acc + parseInt(test.score)
-      }, 0)
-      return totalArray
+    el: '#app',
+    data() {
+        return {
+            newTest: { studentName: 'Jack', score: 0 },
+            tests: [
+                { studentName: 'Billy', score: 76 }, { studentName: 'Suzy', score: 85 }, { studentName: 'Emma', score: 93 }
+            ]
+        }
     },
-    averageScore: function () {
-      let totalArray = this.tests.reduce((acc, test) => {
-        return acc + parseInt(test.score)
-      }, 0)
-      
-      return parseFloat(totalArray / this.tests.length).toFixed(2)
-    }
-  },
-  methods: {
-    addTestScore: function () {
-      this.tests.push({
-        studentName: this.newTest.studentName,
-        score: this.newTest.score
-      })
-      this.newTest.studentName = 'Jack'
-      this.newTest.score = 0      
+    watch: {
+        averageScore: function () {
+            this.autoSave()
+        }
     },
-    autoSave: function() {
-      // 假设我们正在调用我们的后端来保存数据
-      console.log('Calling Api, Saving data')
-    }
-  }
+    computed: {
+        totalScore: function () {
+            let totalArray = this.tests.reduce((acc, test) => {
+                return acc + parseInt(test.score)
+            }, 0)
+            return totalArray
+        },
+        averageScore: function () {
+            let totalArray = this.tests.reduce((acc, test) => {
+                return acc + parseInt(test.score)
+            }, 0)
+            return parseFloat(totalArray / this.tests.length).toFixed(2)
+        }
+    },
+    methods: {
+        addTestScore: function () {
+            this.tests.push({
+                studentName: this.newTest.studentName,
+                score: this.newTest.score
+            })
+            this.newTest.studentName = 'Jack'
+            this.newTest.score = 0
+        },
+        autoSave: function () {
+            // 假设我们正在调用我们的后端来保存数据
+            console.log('Calling Api, Saving data')
+        }
+    },
+    template: `<div>
+          <div id="linkList">
+              <div v-for="(item,index) in linkList" v-if="!_.includes(['file:','','D:'],item[0].name)">
+                  <div 
+                      v-for="(childLi,childLiIndex) in item"
+                      :class="['linkLi',{'md' : /.md$/.test(childLi.name)},{'folder': childLi.type === '1' },{'folderActive': childLi.active }]"
+                      :title="childLi.name"
+                      :data-url="childLi.url"
+                      @click="showChild(index,childLiIndex)">
+                      {{childLi.name}}
+                  </div>
+              </div>
+          </div>
+      <div>`
 })
 ```
 
@@ -82,10 +106,11 @@ let app = new Vue({
 	}
 
     Vue.js为我们提供了四个事件API，分别是$on，$once，$off，$emit
-        $on方法用来在vm实例上监听一个自定义事件，该事件可用$emit触发。
-        $once监听一个只能触发一次的事件，在触发以后会自动移除该事件。
-        $off用来移除自定义事件
-        $emit用来触发指定的自定义事件。
+        $on     方法用来在vm实例上监听一个自定义事件，该事件可用$emit触发。
+        $emit   用来触发指定的自定义事件。
+        $once   监听一个只能触发一次的事件，在触发以后会自动移除该事件。
+        $off    用来移除自定义事件
+
 
     事件修饰符
         在事件处理器中经常需要调用event.preventDefault 或 event.stopPropagation
@@ -216,6 +241,23 @@ Vue.use(MyPlugin);
 ```
 
 ## 知识点
+### 双向数据绑定
+	vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
+    
+	第一步：需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上setter和getter这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化
+
+	第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图
+
+	第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是:
+		1、在自身实例化时往属性订阅器(dep)里面添加自己
+		2、自身必须有一个update()方法
+		3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。
+
+	第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，
+		通过Observer来监听自己的model数据变化，
+		通过Compile来解析编译模板指令，
+		最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
+
 ### 不同路由修改页面的标题：设置afterEach钩子函数
 	// 定义路由的时候如下定义，name也可为中文
 	const routes = [
@@ -243,13 +285,50 @@ Vue.use(MyPlugin);
 	对path属性加上id  
 	通过router对象的params.id来获取动态值
 
+### Vuex 模块化+命名空间后, 如何调用其他模块的 state, actions, mutations, getters ?
+    Vuex 允许我们把 store 分 module（模块）。每一个模块包含各自的状态、mutation、action 和 getter。
+    那么问题来了, 模块化+命名空间之后, 数据都是相对独立的, 如果想在模块 A 调用 模块 B 的state, actions, mutations, getters
+    https://www.mmxiaowu.com/article/591a74f60ef91a5c93a340c4
 
-### axios是什么？怎么使用？描述使用它实现登录功能的流程？
-	请求后台资源的模块。
-	npm install axios -S
-	发送的是跨域，需在配置文件中config/index.js进行设置。
-	后台如果是Tp5则定义一个资源路由。
-	js中使用import进来，然后.get或.post。返回在.then函数中如果成功，失败则是在.catch函数中
+
+### this.$once('hook:beforeDestroy', () => { })
+    const timer = setInterval(() =>{                    
+        // 某些定时器操作                
+    }, 500);            
+    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    this.$once('hook:beforeDestroy', () => {            
+        clearInterval(timer);                                    
+    })
+
+### Proxy 相比于 defineProperty 的优势
+    Object.defineProperty() 的问题主要有三个：
+    1. 不能监听数组的变化
+    2. 必须遍历对象的每个属性
+    3. 必须深层遍历嵌套的对象
+
+    Proxy 在 ES2015 规范中被正式加入，它有以下几个特点：
+    1. 针对对象：针对整个对象，而不是对象的某个属性，所以也就不需要对 keys 进行遍历。这解决了上述 Object.defineProperty() 第二个问题
+    2. 支持数组：Proxy 不需要对数组的方法进行重载，省去了众多 hack，减少代码量等于减少了维护成本，而且标准的就是最好的。
+
+
+    除了上述两点之外，Proxy 还拥有以下优势：
+    1. Proxy 的第二个参数可以有 13 种拦截方法，这比起 Object.defineProperty() 要更加丰富
+    2. Proxy 作为新标准受到浏览器厂商的重点关注和性能优化，相比之下 Object.defineProperty() 是一个已有的老方法。
+
+
+### Vue与React的区别
+    1. vue组件分为全局注册和局部注册，在react中都是通过import相应组件，然后模版中引用；
+    2. props是可以动态变化的，子组件也实时更新，在react中官方建议props要像纯函数那样，输入输出一致对应，而且不太建议通过props来更改视图；
+    3. 子组件一般要显示地调用props选项来声明它期待获得的数据。而在react中不必需，另两者都有props校验机制；
+    4. 每个Vue实例都实现了事件接口，方便父子组件通信，小型项目中不需要引入状态管理机制，而react必需自己实现；
+    5. 使用插槽分发内容，使得可以混合父组件的内容与子组件自己的模板；
+    6. 多了指令系统，让模版可以实现更丰富的功能，而React只能使用JSX语法；
+    7. Vue增加的语法糖computed和watch，而在React中需要自己写一套逻辑来实现；
+    8. react的思路是all in js，通过js来生成html，所以设计了jsx，还有通过js来操作css，社区的styled-component、jss等；而 vue是把html，css，js组合到一起，用各自的处理方式，vue有单文件组件，可以把html、css、js写到一个文件中，html提供了模板引擎来处理。
+    9. react做的事情很少，很多都交给社区去做，vue很多东西都是内置的，写起来确实方便一些， 比如 redux的combineReducer就对应vuex的modules， 比如reselect就对应vuex的getter和vue组件的computed， vuex的mutation是直接改变的原始数据，而redux的reducer是返回一个全新的state，所以redux结合immutable来优化性能，vue不需要。
+    10. react是整体的思路的就是函数式，所以推崇纯组件，数据不可变，单向数据流，当然需要双向的地方也可以做到，比如结合redux-form，组件的横向拆分一般是通过高阶组件。而vue是数据可变的，双向绑定，声明式的写法，vue组件的横向拆分很多情况下用mixin。
+
+
 
 ### 自定义指令（v-check、v-focus）的方法有哪些？它有哪些钩子函数？还有哪些钩子函数参数？
 	全局定义指令：在vue对象的directive方法里面有两个参数，一个是指令名称，另外一个是函数。
@@ -306,6 +385,7 @@ Vue.use(MyPlugin);
 	https://www.mmxiaowu.com/article/58481e30d4352863efb55448
 	在 Vue 中, 直接用索引设置元素，如 vm.items[0] = {}, 这样是不能更新试图的, 这时候就需要用$set方法
 	this.list.$set(0, tmp)
+    Vue.set(this.linkList, [index + 1], dealResponseText(str, url))
 
 
 ### 响应式属性和方法
@@ -337,6 +417,18 @@ Vue.use(MyPlugin);
 ### v-show 和 v-if的选择
 	v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译（编译会被缓存起来）。
 	相比之下，v-show 简单得多——元素始终被编译并保留，只是简单地基于 CSS 切换。
+
+### vue 中如何绑定内联样式
+    data() {
+        return {
+            color: '#fff',
+            img: '/a.jpg'
+        }
+    }
+    // 写法1:
+    <div :style="`color:${color}; background:url(${img});`"></div>
+    // 写法2:
+    <div :style="{width: '100px', height: '100px', background: 'url('+img+')'}"></div>
 
 ### 使用track-by，优化列表循环
 	因为 v-for 默认通过数据对象的特征来决定对已有作用域和 DOM 元素的复用程度，这可能导致重新渲染整个列表。但是，如果每个对象都有一个唯一 ID 的属性，便可以使用 track-by 特性给 Vue.js 一个提示，Vue.js 因而能尽可能地复用已有实例。
@@ -395,212 +487,6 @@ Vue.use(MyPlugin);
            -------------------
     dom         VUe             plain js object
 
-### vue 实例
-    每个Vue的应用都是通过Vue()函数创建一个新的Vue实例开始的。创建了一个Vue实例，其实就创建了一个ViewModel。
-    在vue的实例中，可以插入挂载元素 数据选项，还可以插入模板 方法 生命周期钩子...
-        new Vue({})
-        挂载元素  el:"#app"
-        设置数据    data:{}
-        模板渲染    {{title}}
-        filters、computed、methods和watch
-
-
-
-
-### Vue的双向数据绑定原理是什么？
-#### 说明
-	vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
-#### 具体步骤：
-	第一步：需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上setter和getter这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化
-
-	第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图
-
-	第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是:
-		1、在自身实例化时往属性订阅器(dep)里面添加自己
-		2、自身必须有一个update()方法
-		3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。
-
-	第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，
-		通过Observer来监听自己的model数据变化，
-		通过Compile来解析编译模板指令，
-		最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
-
-
-## 构造函数参数 实例属性+方法
-### 参数
-	Vue.js的组件可以理解为预先定义好了行为的ViewModel类。一个组件可以预定义很多选项，但最核心的是以下几个
-
-    数据相关 data props propsData computed  filter
-    生命周期函数
-    DOM相关 el render template
-    其他 directives  components
-
-### vue实例属性
-    vm.$data      Vue实例观察的数据对象，vue实例代理了对其data对象的访问
-    vm.$el        vue实例使用的根DOM元素
-    vm.$option    用于当前vue实例的初始化选项 $options属性，它包含了数据、计算属性和方法等等
-    vm.$parent    父实例
-    vm.$children  
-    vm.$root
-    vm.$slots     用来访问被slot分发的内容，每个具名slot有其相应的属性[slot="foo"中的内容将会在app.$slots.foo中被找到]
-    vm.$scopedSlots
-    vm.$refs      包含了所有拥有ref注册的子组件
-    vm.$isServe   当前vue实例是否运行与服务器
-
-### vue实例方法
-    事件 .$on .$off .$once .$emit
-    数据 .$watch .$set .$delete [Vue.set Vue.delete]
-    生命周期 
-        vm.$mount      如果vue实例没有收到el设置，则处于未挂载状态，没有关联的DOM元素；可以使用app.$mount("#app")手动挂载一个未挂载的实例
-        vm.$forceUpdate 使vue实例重新渲染，仅仅影响实例本身和插入插槽内容的额子组件
-        vm.$nextTick   将回调延迟到下次DOM更新循环之后执行。在修改数据之后使用
-        vm.$destroy    完全销毁一个vue实例（清理与其他实例的连接 解绑其它全部指令和事件监听器）
-
-###  Vue构造函数静态方法
-    十个全局API：
-        Vue.extend：使用基础Vue构造器，创建一个“子类”。参数是一个包含组件选项的对象
-        Vue.nextTick：在下次DOM更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的DOM
-        Vue.set：设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开Vue不能检测属性被添加的限制
-        Vue.delete：删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开Vue不能检测到属性被删除的限制，但是你应该很少会使用它
-        Vue.directive：注册或获取全局指令
-        Vue.filter：注册或获取全局过滤器
-        Vue.component：注册或获取全局组件。注册还会自动使用给定的id设置组件的名称
-        Vue.use：安装Vue.js插件
-        Vue.mixin：全局注册一个混合，影响注册之后所有创建的每个Vue实例
-        Vue.compile：在render函数中编译模板字符串。只在独立构建时有效
-###  全局配置Vue.config
-    六个全局Vue.config的API是：
-        Vue.config.silent = true： 取消Vue所有的日志与警告
-        Vue.config.optionMergeStrategies.methods：自定义合并策略的选项
-        Vue.config.devtools = true：配置是否允许vue-devtools检查代码
-        Vue.config.errorHandler = function(err, vm){}：指定组件的渲染和观察期间未捕获错误的处理函数
-        Vue.config.ignoredElements = ['my-custom-web-component','another-web-component']：忽略在Vue之外的自定义元素
-        Vue.config.keyCodes：给v-on自定义键位别名
-
-### 图片
-![](../images/Vue-api.png)
-![](../images/Vue-propertype-methods.png)
-![](../images/vue-instances-and-life-cycles-12.png)
-![](../images/vue-instances-and-life-cycles-8.png)
-![](../images/vue-2019-06-19-21-10-12.png)
-	
-## 原理
-### 生命周期面试题
-	什么是vue生命周期？ 
-		Vue实例从创建到销毁的过程，就是生命周期。也就是从开始创建、初始化数据、编译模板、挂载Dom→渲染、更新→渲染、卸载等一系列过程，我们称这是 Vue 的生命周期。
-	vue生命周期的作用是什么？
-		它的生命周期中有多个事件钩子，让我们在控制整个Vue实例的过程时更容易形成好的逻辑。
-	vue生命周期总共有几个阶段？
-		它可以总共分为8个阶段：创建前/后, 载入前/后,更新前/后,销毁前/销毁后
-	第一次页面加载会触发哪几个钩子？
-		第一次页面加载时会触发 beforeCreate, created, beforeMount, mounted 这几个钩子
-	DOM 渲染在 哪个周期中就已经完成？
-		DOM 渲染在 mounted 中就已经完成了
-	简单描述每个周期具体适合哪些场景？
-		生命周期钩子的一些使用方法： 
-			beforecreate : 可以在这加个loading事件，在加载实例时触发 
-			created : 初始化完成时的事件写在这里，如在这结束loading事件，异步请求也适宜在这里调用 
-			mounted : 挂载元素，获取到DOM节点 
-			updated : 如果对数据统一处理，在这里写上相应函数 
-			beforeDestroy : 可以做一个确认停止事件的确认框 
-			nextTick : 更新数据后立即操作dom
-
-### 周期函数使用建议
-    一般情况下我们在 beforecreate 方法中可以加 Loading 事件，
-    在 created 方法中结束 Loading，并且还可以在此方法中做一些初始化操作，
-    在 mounted 方法中进行发起异步服务端请求。当然，如果你想页面没有加载完成就请求数据那么在 created 方法请求数据也没有什么问题，
-    可以在 beforeDestroy 方法中弹出确认删除，
-    destroyed 中清除相关数据达到资源的有效利用
-
-
-### 生命周期(同钩子函数[见下])
-    beforeCreate：在实例初始化之后，数据观测（Data Observer）和event/watcher事件配置之前被调用
-    created：实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据(Data Observer)、属性和方法的运算，watch/event事件回调。然而，挂载阶段还没开始，$el属性目前不可见
-    beforeMount：在挂载开始之前被调用：相关的render函数首次被调用
-    mounted：el被新创建的vm.$el替换，并挂载到实例上去之后调用该钩子。如果root实例挂载了一个文档内元素，当mounted被调用时vm.$el也在文档内
-    beforeUpdate：数据更新时调用，发生在虚拟DOM重新渲染和打补丁之前。你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程
-    updated：由于数据更改导致虚拟DOM重新渲染和打补丁，在这之后会调用该钩子。当这个钩子被调用时，组件DOM已经更新，所以你现在可以执行依赖于DOM的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用
-    beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用
-    destroyed：Vue实例销毁后调用。调用后，Vue实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用
-
-
-### 一篇文章总结
-    https://juejin.im/post/5cd0bdfc6fb9a031f10ca08c#heading-17
-    vue双向数据绑定
-        vue.js 是采用'数据劫持'结合'发布者-订阅者模式'的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
-        第一步：需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter。这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化；
-        第二步：compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图；
-        第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是:
-            1、在自身实例化时往属性订阅器(dep)里面添加自己
-            2、自身必须有一个update()方法
-            3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。
-        第四步：MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，
-            通过Observer来监听自己的model数据变化，
-            通过Compile来解析编译模板指令，
-            最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
-
-
-    vue生命周期的执行过程
-        首先创建一个vue实例，Vue()；
-        在创建Vue实例的时候，执行了init()，在init过程中首先调用了beforeCreate。
-        Created之前，对data内的数据进行了数据监听，并且初始化了Vue内部事件。具体如下：
-            1. 完成了数据观测；
-            2. 完成了属性和方法的运算；
-            3. 完成了watch/event事件的回调；
-            4. 但是此时还未挂载dom上，$el属性是不可见的；
-
-        beforeMount之前，完成了模板的编译。把data对象里面的数据和vue的语法写的模板编译成了html，但是此时还没有将编译出来的html渲染到页面；
-            1. 在实例内部有template属性的时候，直接用内部的，然后调用render函数去渲染。
-            2. 在实例内部没有找到template，就调用外部的html（“el”option（选项））。实例内部的template属性比外部的优先级高。 render函数 > template属性 > 外部html；
-            3. 要是前两者都不满足，那么就抛出错误。
-
-        Mounted之前执行了render函数，将渲染出来的内容挂载到了DOM节点上。
-			1. mounted是将html挂载到页面完成后触发的钩子函数；
-			2. 当mounted执行完毕，整个实例算是走完了流程；在整个实例过程中，mounted仅执行一次
-
-        beforeUpdate	数据发生变化时，会调用beforeUpdate，然后经历virtual DOM，最后updated更新完成
-        beforeDestory	是实例销毁前钩子函数，销毁了所有观察者，子组件以及事件监听
-        destoryed		实例销毁执行的钩子函数
-
-    
-    vue生命周期的执行过程
-        beforeCreate：初始化了部分参数，如果有相同的参数，做了参数合并，执行 beforeCreate；el和数据对象都为undefined，还未初始化；
-        created ：初始化了 Inject 、Provide 、 props 、methods 、data 、computed 和 watch，执行 created ；data有了，el还没有；
-        beforeMount ：检查是否存在 el 属性，存在的话进行渲染 dom 操作，执行 beforeMount；$el和data都初始化了，但是dom还是虚拟节点，dom中对应的数据还没有替换；
-        mounted ：实例化 Watcher ，渲染 dom，执行 mounted ；vue实例挂载完成，dom中对应的数据成功渲染；
-        beforeUpdate ：在渲染 dom 后，执行了 mounted 钩子后，在数据更新的时候，执行 beforeUpdate ；
-        updated ：检查当前的 watcher 列表中，是否存在当前要更新数据的 watcher ，如果存在就执行 updated ；
-        beforeDestroy ：检查是否已经被卸载，如果已经被卸载，就直接 return 出去，否则执行 beforeDestroy ；
-        destroyed ：把所有有关自己痕迹的地方，都给删除掉；
-
-    Vue.js的template编译
-    数据到视图的整体流程
-
-    vue组件间的七种交互
-		1. props和$emit
-		2.特性绑定$attrs和$listeners
-		3.中央事件总线 Events Bus
-		4.依赖注入：provide和inject
-		5.v-model
-		6.子组件引用：ref和$refs
-		7.父链和子索引：$parent和$children
-		8.vue1中boradcast和dispatch
-		9.vuex
-
-    vuex原理
-		vuex利用了vue的mixin机制，混合 beforeCreate 钩子 将store注入至vue组件实例上，并注册了 vuex store的引用属性 $store！
-		vuex的state是借助vue的响应式data实现的。
-		getter是借助vue的计算属性computed特性实现的。
-		其设计思想与vue中央事件总线如出一辙。
-
-
-    Vue-router 中hash模式和history模式的区别
-		hash模式url里面永远带着#号，我们在开发当中默认使用这个模式。那么什么时候要用history模式呢？如果用户考虑url的规范那么就需要使用history模式，因为history模式没有#号，是个正常的url适合推广宣传。
-		当然其功能也有区别，比如我们在开发app的时候有分享页面，那么这个分享出去的页面就是用vue或是react做的，咱们把这个页面分享到第三方的app里，有的app里面url是不允许带有#号的，所以要将#号去除那么就要使用history模式，但是使用history模式还有一个问题就是，在访问二级页面的时候，做刷新操作，会出现404错误，那么就需要和后端人配合让他配置一下apache或是nginx的url重定向，重定向到你的首页路由上就ok啦。
-		路由的哈希模式其实是利用了window可以监听onhashchange事件，也就是说你的url中的哈希值（#后面的值）如果有变化，前端是可以做到监听并做一些响应（搞点事情），这么一来，即使前端并没有发起http请求他也能够找到对应页面的代码块进行按需加载。
-		pushState与replaceState，这两个神器的作用就是可以将url替换并且不刷新页面，好比挂羊头卖狗肉，http并没有去请求服务器该路径下的资源，一旦刷新就会暴露这个实际不存在的“羊头”，显示404。这就需要服务器端做点手脚，将不存在的路径请求重定向到入口文件（index.html）。
-
-
 ### 虚拟dom
     让虚拟DOM和DOM-diff不再成为你的绊脚石
     https://juejin.im/post/5c8e5e4951882545c109ae9c
@@ -617,17 +503,6 @@ Vue.use(MyPlugin);
 	new Vue({
 		mode: "history",//开启history模式保证spa可以和以前的网页一样可以前进和后退
 	})
-
-
-### qita
-	koa-better-body 下载文件
-
-	koa-covert
-	covert(function*(){}) => promise
-
-	koa koa-mysql
-	
-
 
 ### vue-cli
 	vue init webpack projectName
