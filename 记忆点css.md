@@ -210,78 +210,9 @@ word-break:break-all;// 控制单行过长文字在固定长度下换行
 	@media screen and (max-device-width:480px)
 
 
+### BFC 
+    BFC 全称为 块格式化上下文 (Block Formatting Context) 。它是块级盒布局出现的区域，也是浮动层元素进行交互的区域。
 
-
-## 其他
-### 关于$.proxy的使用
-	使用$.proxy函数。
-		jQuery.proxy(),接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context )语境。
-	有两种语法：
-		jQuery.proxy( function, context )
-			function将要改变上下文语境的函数。
-			context函数的上下文语境(`this`)会被设置成这个 object 对象。
-
-		jQuery.proxy( context, name )
-			context函数的上下文语境会被设置成这个 object 对象。
-			name将要改变上下文语境的函数名(这个函数必须是前一个参数 ‘context’ **对象的属性)
-	在某些情况下，我们调用Javascript函数时候，this指针并不一定是我们所期望的那个。例如：
-		$('#myElement').click(function() {
-			var that = this;   //设置一个变量，指向这个需要的this
-			setTimeout(function() {
-				$(that).addClass('aNewClass'); // 这个this指向的是settimeout函数内部，而非之前的html元素
-			}, 1000);
-		});	
-	上面的例子使用这种方式就可以修改成：
-		$('#myElement').click(function() {
-			setTimeout($.proxy(function() {
-				$(this).addClass('aNewClass');  
-			}, this), 1000);
-		});
-
-### iframe的优缺点？
-	iframe也称作嵌入式框架，嵌入式框架和框架网页类似，它可以把一个网页的框架和内容嵌入在现有的网页中。
-	优点：
-		解决加载缓慢的第三方内容如图标和广告等的加载问题
-		Security sandbox
-		并行加载脚本
-		方便制作导航栏
-	缺点：
-		iframe会阻塞主页面的Onload事件
-		即时内容为空，加载也需要时间
-		没有语意
-
-
-### git设置点
-	git config --global alias.st status //配置别名
-	ssh-keygen -t rsa -C "${YourEmail}"  //复制生成的ssh-key pub，添加到github或bitbucket等网站相应的接口。
-	git config --global credential.helper store 
-  
-### vim选择
-http://www.jianshu.com/p/4b07b7173910
-
-```
-0 ^ $ 
-	移动到行首尾 
-	"1$"表示当前行的行尾，"2$"表示当前行的下一行的行尾。
-v
-	字符选择，将光标经过的字符选择
-V
-	行选择，将光标经过的行选择
-[Ctrl]+v
-	矩形选择，可以用矩形的方式选择数据
-y
-	将选中地方复制起来
-d
-	将选中地方删除
-.
-	命令会记住上一次的操作
-注释代码 ^ cc v j j j j I
-:set number
-```
-
-
-### Content-Type 的几大类型：
-	application/x-www-form-urlencoded: 最普遍的上传方式，数据格式类似 key1=val1&key2=val2application/json: json格式，数据格式类似于{‘key1’:‘val1’,‘key2’:‘val2’}）multipart/form-data: 文件上传的时候需要设置text/xml: 很少用了
-
-
-	[linux环境下安装nginx教程](https://jingyan.baidu.com/article/1974b2898f5eadf4b1f774de.html)
+    BFC 特性(功能)
+      使 BFC 内部浮动元素不会到处乱跑；
+      和浮动元素产生边界。

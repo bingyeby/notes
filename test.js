@@ -1,18 +1,10 @@
-let _ = require('./lodash')
+let obj = {
+    2017:'1',
+    2016:'11',
+    2015:'12',
+    key:['2015','2016','2017'],
+}
 
-
-var users = [
-  { 'user': 'barney', 'age': 36, 'active': true },
-  { 'user': 'fred', 'age': 40, 'active': false },
-  { 'user': 'pebbles', 'age': 1, 'active': true }
-];
-
-let rr = _.find(users, 'active')
-
-console.log('rr', rr);
-
-let a = {}
-_.set(a, 'a[0]b.b.b')
-console.log('a', JSON.stringify(a));
-
-
+obj.key.forEach((n)=>{
+    console.log(obj[n])
+})
