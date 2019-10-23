@@ -296,21 +296,22 @@
     }
 
 #### 在组件中分发 Action
-
-    你在组件中使用 this.$store.dispatch('xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
-
-    import { mapActions } from 'vuex'
-    export default {
-        // ...
-        methods: {
-            ...mapActions([ 'increment', 'incrementBy' ]),
-                // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
-                // `mapActions` 也支持载荷：
-                // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
-            ...mapActions({ add: 'increment' })
-                // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
-        }
+*  你在组件中使用 this.$store.dispatch('xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
+```js
+import { mapActions } from 'vuex'
+export default {
+    // ...
+    methods: {
+        ...mapActions([ 'increment', 'incrementBy' ]),
+            // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+            // `mapActions` 也支持载荷：
+            // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+        ...mapActions({ add: 'increment' })
+            // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
     }
+}
+```
+
 #### 组合 Action
     Action 通常是异步的，那么如何知道 action 什么时候结束呢？更重要的是，我们如何才能组合多个 action，以处理更加复杂的异步流程？
 

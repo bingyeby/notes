@@ -684,6 +684,16 @@ npm i babel-plugin-import -D
 ```
 
 
+### react-hot-loader
+    当应用程序足够短小、状态少、入口单一的时候， 使用webpack-dev-server 中默认的hot 服务器就够了。
+    但是随着应用程序越来越庞大，状态越来越多的时候，这个时候就要使用react-hot-loader了
+    react-hot-loader 是对 webpack 的热加载进行了改进，支持 react 组件状态不丢失。
+
+    https://blog.csdn.net/chiuwingyan/article/details/80803303
+    https://www.html.cn/doc/webpack2/guides/hmr-react/
+    Hot-Module-Replacement react-hot-loader
+
+
 ### svg-sprite-loader
     手摸手，带你优雅的使用 icon
     https://juejin.im/post/59bb864b5188257e7a427c09

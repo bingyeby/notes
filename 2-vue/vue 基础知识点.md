@@ -343,6 +343,13 @@ Vue.use(MyPlugin);
 	ViewModel： 业务逻辑层，View需要什么数据，ViewModel要提供这个数据；View有某些操作，ViewModel就要响应这些操作，所以可以说它是Model for View.
 	总结： MVVM模式简化了界面与业务的依赖，解决了数据频繁更新。MVVM 在使用当中，利用双向绑定技术，使得 Model 变化时，ViewModel 会自动更新，而 ViewModel 变化时，View 也会自动变化。
 
+### mvvm模型
+           -------------------
+    view   |  dom listeners  |     model
+           | data bingdings  |
+           -------------------
+    dom         VUe             plain js object
+
 
 ### 请详细说下你对vue生命周期的理解？
 	总共分为8个阶段创建前/后，载入前/后，更新前/后，销毁前/后
@@ -361,6 +368,7 @@ Vue.use(MyPlugin);
 ### 你是怎么认识vuex的？
 	vuex可以理解为一种开发模式或框架。比如PHP有thinkphp，java有spring等。通过状态（数据源）集中管理驱动组件的变化（好比spring的IOC容器对bean进行集中管理）。
 	应用级的状态集中放在store中； 改变状态的方式是提交mutations，这是个同步的事物； 异步逻辑应该封装在action中。
+    Vuex有5个关键概念: 分别是 state、getter、mutation、action、module;
 
 ### vue-loader是什么？使用它的用途有哪些？解析.vue文件的一个加载器，跟template/js/style转换成js模块。
 	用途：js可以写es6、style样式可以scss或less、template可以加jade等
@@ -480,12 +488,6 @@ Vue.use(MyPlugin);
     https://segmentfault.com/a/1190000019153289
     一张思维导图辅助你深入了解 Vue | Vue-Router | Vuex 源码架构
 
-### mvvm模型
-           -------------------
-    view   |  dom listeners  |     model
-           | data bingdings  |
-           -------------------
-    dom         VUe             plain js object
 
 ### 虚拟dom
     让虚拟DOM和DOM-diff不再成为你的绊脚石
