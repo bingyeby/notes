@@ -90,6 +90,8 @@ let app = new Vue({
                   </div>
               </div>
           </div>
+          <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+          <div v-bind:style="styleObject"></div>
       <div>`
 })
 ```
