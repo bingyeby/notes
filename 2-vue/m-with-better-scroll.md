@@ -18,10 +18,11 @@
     对于 Vue 中使用 BetterScroll，有一个需要注意的点是，因为在 Vue 模板中列表渲染还没完成时，是没有生成列表 DOM 元素的，所以需要在确保列表渲染完成以后，才能创建 BScroll 实例，因此在 Vue 中，初始化 BScroll 的最佳时机是 mouted 的 nextTick。
     // 在 Vue 中，保证列表渲染完成时，初始化 BScroll
     mounted() {
-    setTimeout(() => {
-        this.scroll = new BScroll(this.$refs.wrapper, options)
-    }, 20)
-    },初始化之后，这个 wrapper 容器就能够优雅地滚动了，并且可以通过 BScroll 实例this.scroll使用其提供的 API 方法和事件。
+        setTimeout(() => {
+            this.scroll = new BScroll(this.$refs.wrapper, options)
+        }, 20)
+    },
+    初始化之后，这个 wrapper 容器就能够优雅地滚动了，并且可以通过 BScroll 实例this.scroll使用其提供的 API 方法和事件。
 
 
 ### option

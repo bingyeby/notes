@@ -103,7 +103,7 @@
             3.2 mapState 函数返回的是一个对象，通过扩展运算符将它与局部计算属性混合使用：
                 computed: { ...mapState({  }) }
 
-### 组件中使用state
+### 示例
 
 ```html
 <div class="test">
@@ -128,6 +128,9 @@
     computed:{
       count(){
         return this.$store.state.count; //1
+      },
+      set(){
+        this.$store.commit('gateway/stateSet', ['stepIndex', this.$store.state.gateway.stepIndex + 1])
       }
     }
     computed:mapState({         //2.1
@@ -147,7 +150,7 @@
 
 
 
-### getter
+### getter mapGetters
     Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
 
     Getter 接受 state 作为其第一个参数，其他 getter 作为第二个参数
@@ -176,7 +179,6 @@
         }
         store.getters.getTodoById(2) // -> { id: 2, text: '...', done: false }
 
-#### mapGetters 辅助函数
 
     mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：
         computed: {
@@ -210,10 +212,10 @@
             }
         }
         当使用对象风格的提交方式，整个对象都作为载荷传给 mutation 函数，因此 handler 保持不变：
-        store.commit({
-            type: 'increment',
-            amount: 10
-        })
+        store.commit({ type: 'increment', amount: 10 })
+        store.commit('increment')
+        
+
 #### 使用常量替代 Mutation 事件类型
     使用常量替代 mutation 事件类型在各种 Flux 实现中是很常见的模式。这样可以使 linter 之类的工具发挥作用，同时把这些常量放在单独的文件中可以让你的代码合作者对整个 app 包含的 mutation 一目了然：
     // mutation-types.js
@@ -231,7 +233,8 @@
 
 #### Mutation 必须是同步函数
     实质上任何在回调函数中进行的状态的改变都是不可追踪的
-#### 在组件中提交 Mutation
+
+#### 在组件中使用 Mutation
     可以在组件中使用 this.$store.commit('xxx') 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）
         import { mapMutations } from 'vuex'
         export default {
@@ -296,21 +299,22 @@
     }
 
 #### 在组件中分发 Action
-
-    你在组件中使用 this.$store.dispatch('xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
-
-    import { mapActions } from 'vuex'
-    export default {
-        // ...
-        methods: {
-            ...mapActions([ 'increment', 'incrementBy' ]),
-                // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
-                // `mapActions` 也支持载荷：
-                // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
-            ...mapActions({ add: 'increment' })
-                // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
-        }
+*  你在组件中使用 this.$store.dispatch('xxx') 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
+```js
+import { mapActions } from 'vuex'
+export default {
+    // ...
+    methods: {
+        ...mapActions([ 'increment', 'incrementBy' ]),
+            // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+            // `mapActions` 也支持载荷：
+            // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+        ...mapActions({ add: 'increment' })
+            // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
     }
+}
+```
+
 #### 组合 Action
     Action 通常是异步的，那么如何知道 action 什么时候结束呢？更重要的是，我们如何才能组合多个 action，以处理更加复杂的异步流程？
 
@@ -357,11 +361,31 @@
         3. 异步逻辑都应该封装到 action 里面。
     只要你遵守以上规则，如何组织代码随你便。如果你的 store 文件太大，只需将 action、mutation 和 getter 分割到单独的文件。
 
-
 ### 严格模式
     const store = new Vuex.Store({ strict: true })
     在严格模式下，无论何时发生了状态变更且不是由 mutation 函数引起的，将会抛出错误。这能保证所有的状态变更都能被调试工具跟踪到。
     不要在发布环境下启用严格模式！严格模式会深度监测状态树来检测不合规的状态变更——请确保在发布环境下关闭严格模式，以避免性能损失。
     const store = new Vuex.Store({ strict: process.env.NODE_ENV !== 'production' })
 
-### 应用小结
+### Vuex.Store(api参考)
+    https://vuex.vuejs.org/zh/api/#vuex-store
+
+    import Vuex from 'vuex'
+    const store = new Vuex.Store({ ...options })
+#### 构造器选项
+    options: state mutations actions getters modules plugins strict devtools
+        plugins 这个选项暴露出每次 mutation 的钩子。Vuex 插件就是一个函数，它接收 store 作为唯一参数,可以监听 mutation（用于外部地数据持久化、记录或调试）或者提交 mutation （用于内部数据，例如 websocket 或 某些观察者）
+        strict 使 Vuex store 进入严格模式，在严格模式下，任何 mutation 处理函数以外修改 Vuex state 都会抛出错误。
+#### 实例属性
+    state
+    getters
+#### 实例方法
+    commit dispatch 
+    replaceState watch 
+    subscribe subscribeAction 
+    registerModule unregisterModule
+    hotUpdate
+#### 组件绑定的辅助函数
+    mapState mapGetters mapActions mapMutations createNamespacedHelpers
+
+
