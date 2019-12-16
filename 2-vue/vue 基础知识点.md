@@ -542,3 +542,6 @@ Vue.use(MyPlugin);
 	v-leave-to
 
 
+### .sync
+    <child :msg.sync='msg'></child>
+    <child :msg="msg" @update:msg="msg = $event"></child>

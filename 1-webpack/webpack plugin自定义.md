@@ -4,6 +4,9 @@
     https://www.jianshu.com/p/108d07de0e01
     Webpack 常见插件原理分析
 
+    https://www.jb51.net/article/148719.htm
+    详解webpack loader和plugin编写
+
 
 ### webpack 插件在项目中的运用
 
@@ -40,12 +43,12 @@ MyPlugin.prototype.apply = function(compiler) {
 module.exports = MyPlugin
 ```
 
-### 定义解释
+### 相关解释
 1. 函数的原型上为什么要定义 apply 方法: 通过 plugin.apply() 调用插件的
 2. compiler 对象是什么呢？
 3. compiler 对象上的事件钩子是怎样的？
 4. 事件钩子的回调函数里能拿到的 compilation 对象又是什么呢？
-5. 在开发 Plugin 时最常用的两个对象就是 Compiler和 Compilation，它们是 Plugin 和 Webpack 之间的桥梁。
+5. 在开发 Plugin 时最常用的两个对象就是 Compiler 和 Compilation，它们是 Plugin 和 Webpack 之间的桥梁。
 
 #### compiler 对象
 Compiler 对象包含了 Webpack 环境所有的的配置信息，包含 options，loaders，plugins 这些信息，这个对象在 Webpack 启动时候被实例化，它是全局唯一的，可以简单地把它理解为 Webpack 实例；
