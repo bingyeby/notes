@@ -59,6 +59,7 @@ grid-template-areas: 'a . c'
 如果某些区域不需要利用，则使用"点"（.）表示。
 
 grid-template属性是grid-template-columns、grid-template-rows和grid-template-areas这三个属性的合并
+```
 
 ### 设置item
 ```css
@@ -112,6 +113,59 @@ item1 占据从第一条网格线开始，到第四条网格线结束,它将独�
     根据最新标准，上面三个属性名的grid-前缀已经删除，grid-column-gap和grid-row-gap写成column-gap和row-gap，grid-gap写成gap。
 
 ```
+
+### 响应式
+```html
+<div class="outer">
+    <div class="n1">n1</div>
+    <div class="n2">n2</div>
+    <div class="n3">n3</div>
+    <div class="n4">n4</div>
+    <div class="n5">n5</div>
+</div>
+<style>
+    div {
+        border: 1px solid lightcoral;
+        text-align: center;
+    }
+    .outer {
+        display: grid;
+        grid: 100px 100px 100px / 100px repeat(4, minmax(100px, 1fr)) 100px;
+        grid-template-areas: 'n1 n1 n1 n1 n1 n1' 'n2 n3 n3 n3 n3 n4' 'n5 n5 n5 n5 n5 n5';
+        justify-content: stretch;
+
+        overflow: auto;
+    }
+    .n1 {
+        grid-area: n1;
+    }
+    .n2 {
+        grid-area: n2;
+    }
+    .n3 {
+        grid-area: n3;
+    }
+    .n4 {
+        grid-area: n4;
+    }
+    .n5 {
+        grid-area: n5;
+    }
+    @media screen and (max-width: 640px) {
+        .outer {
+            grid: 50px 100px 50px / 100px repeat(4, minmax(100px, 1fr)) 100px;
+            grid-template-areas: 'n1 n1 n1 n1 n1 n1' 'n3 n3 n3 n3 n3 n3' 'n5 n5 n5 n5 n5 n5';
+        }
+        .n2 {
+            display: none;
+        }
+        .n4 {
+            display: none;
+        }
+    }
+</style>
+```
+
 
 ### 实战
     https://www.html.cn/archives/8512
