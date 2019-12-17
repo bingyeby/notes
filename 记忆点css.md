@@ -209,6 +209,13 @@ word-break:break-all;// 控制单行过长文字在固定长度下换行
 	还有一种是iphone的写法：
 	@media screen and (max-device-width:480px)
 
+### grid布局的应用
+    CSS Grid VS Flexbox: A Practical Comparison
+    https://tutorialzine.com/2017/03/css-grid-vs-flexbox
+    https://www.freecodecamp.org/news/css-grid-changes-how-we-can-think-about-structuring-our-content/
+
+    精读《用 css grid 重新思考布局》
+    https://zhuanlan.zhihu.com/p/86519309
 
 ### BFC 
     BFC 全称为 块格式化上下文 (Block Formatting Context) 。它是块级盒布局出现的区域，也是浮动层元素进行交互的区域。
