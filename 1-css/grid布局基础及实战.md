@@ -112,8 +112,6 @@ item1 占据从第一条网格线开始，到第四条网格线结束,它将独�
 
     根据最新标准，上面三个属性名的grid-前缀已经删除，grid-column-gap和grid-row-gap写成column-gap和row-gap，grid-gap写成gap。
 
-```
-
 ### 响应式
 ```html
 <div class="outer">
@@ -169,9 +167,13 @@ item1 占据从第一条网格线开始，到第四条网格线结束,它将独�
 
 ### 实战
     https://www.html.cn/archives/8512
+    https://www.html.cn/archives/8510
     布局利器 响应式 grid-template-areas
 
     https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout
     详解
+
+    http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
+    CSS Grid 网格布局教程
 
     
