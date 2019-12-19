@@ -15,6 +15,11 @@
 
     https://blog.csdn.net/liangrongliu1991/article/details/100523879
     Vue 的小奇技
+### data
+    vue组件中的data必须是函数
+        Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;
+        如果两个实例同时引用一个对象,那么当你修改其中一个属性的时候,另外一个实例也会跟着改;
+        data是一个函数时，每个组件实例都有自己的作用域，每个实例相互独立,不会相互影响
 
 ### methods computed watch
     在Vue中有三种方法可以让你的组件使用Vue的响应性。这些是methods、computed和watch
