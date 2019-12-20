@@ -7,6 +7,10 @@
     https://www.jb51.net/article/148719.htm
     详解webpack loader和plugin编写
 
+    https://segmentfault.com/a/1190000021214520
+    https://segmentfault.com/a/1190000021205134
+    手把手用代码教你实现一个 webpack loader plugin
+
 
 ### webpack 插件在项目中的运用
 
