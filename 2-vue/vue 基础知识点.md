@@ -526,11 +526,7 @@ Vue.use(MyPlugin);
 	Vue.use(Element)
 
 	// or
-	import {
-	Select,
-	Button
-	// ...
-	} from 'element-ui'
+	import { Select, Button } from 'element-ui'
 
 	Vue.component(Select.name, Select)
 	Vue.component(Button.name, Button)
