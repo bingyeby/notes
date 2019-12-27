@@ -514,7 +514,7 @@ Installing new dependencies
 ```
 
 ### 按需加载 babel-plugin-import
-https://github.com/ant-design/babel-plugin-import
+    https://github.com/ant-design/babel-plugin-import
 
     如果你在开发环境的控制台看到下面的提示，那么你可能使用了 import { Button } from 'antd'; 的写法引入了 antd 下所有的模块，这会影响应用的网络性能。
 
@@ -533,3 +533,27 @@ https://github.com/ant-design/babel-plugin-import
     插件会帮你转换成 antd/lib/xxx 的写法。另外此插件配合 style 属性可以做到模块样式的按需自动加载。
 
     注意，babel-plugin-import 的 style 属性除了引入对应组件的样式，也会引入一些必要的全局样式。如果你不需要它们，建议不要使用此属性。你可以 import 'antd/dist/antd.css' 手动引入，并覆盖全局样式。
+
+
+### babel7 基础使用
+    https://www.jianshu.com/p/28878eacc613
+    npm i -D @babel/cli @babel/core
+    npx babel 01.js -o 01_trans.js
+
+    npm i -S @babel/preset-env  用来转换高级语法到es5或者以下的语法的
+    npm i -S @babel/polyfill    
+        babel仅仅只能转换高级语法而已，而高级语法新增的一些函数是无能为力的，这是浏览器内核不支持，那么babel也没办法了
+        比如说es6的一些数组新函数 filter foreach reduce等等低级浏览器该不支持
+        为了让一段js代码在各个浏览器上都输出相同的结果，polyfill提供这样的方法让各个浏览器对于js的兼容性处在同一个水准上
+        安装完成之后直接在转换后的文件（是转换成低价语法的文件）中引用一段代码 require('@babel/polyfill');
+
+    npm i --S @babel/runtime @babel/plugin-transform-runtime
+        @babel/runtime 就是用于提出来公共的包，但是提出来之后，代码并不会自己会引用这些包啊
+        @babel/plugin-transform-runtime 所以我们需要这个包来自动引用公共函数
+            @babel/runtime不需要配置，由@babel/plugin-transform-runtime引用，所以只需要配置plugin
+            "plugins": [ "transform-runtime", ]
+
+    npm i -S @babel/preset-react   用来转换react
+    npm i -D @babel/plugin-proposal-class-properties    
+
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
