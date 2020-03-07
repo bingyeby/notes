@@ -219,7 +219,21 @@ console.log('this is a prompt'.prompt);
 console.log('this is a data'.data);
 ```
 
-
+### node-sass安装
+	去 Release 列表 找到对应的版本
+	https://github.com/sass/node-sass/releases/tag/v4.7.2
+	https://github.com/sass/node-sass/releases
+	Ctrl+F 粘贴，找到那个文件，下载（必要的时候挂代理，浏览器下载通常都比 node 下载更快更稳定），然后文件存到一个稳定的路径，并复制路径
+	设置sass路径 set SASS_BINARY_PATH=D:/nodejs/.nodes/win32-x64-57_binding.node
+	
+	方法一：使用淘宝源
+    
+    npm config set sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+    npm config set phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs/
+    npm config set electron_mirror=https://npm.taobao.org/mirrors/electron/
+    npm config set registry=https://registry.npm.taobao.org
+    
+    这样使用 npm install 安装 node-sass、electron 和 phantomjs 时都能自动从淘宝源上下载。
 
 ### 文件操作相关
 #### fs-extra
