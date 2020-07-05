@@ -32,7 +32,7 @@
     "echarts-china-cities-js": "^0.1.1",
     "echarts-wordcloud": "^1.1.3",
     "font-awesome": "^4.7.0",
-    "highcharts": "^5.0.11",
+    "highcharts": "^8.1.2",
     "highcharts-exporting": "^0.1.2",
     "highcharts-more": "^0.1.2",
     "html-webpack-plugin": "^3.2.0",
