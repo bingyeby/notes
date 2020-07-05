@@ -546,3 +546,25 @@ Vue.use(MyPlugin);
 ### .sync
     <child :msg.sync='msg'></child>
     <child :msg="msg" @update:msg="msg = $event"></child>
+
+
+### slot
+```
+    子组件
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="230">
+        <template slot-scope="{row}"><!--#default-->
+          <el-button type="success" size="mini" @click="handleView(row)">详情</el-button>
+          <el-button type="primary" size="mini" @click="rowChangeDialogShow(row)" v-if="config.tableLiChangeUrl">修改</el-button>
+          <el-button type="danger" size="mini" @click="rowDelete(row)" v-if="config.tableLiDeleteUrl">删除</el-button>
+          <slot name="deleteBtn" v-bind:row="row">删除</slot>
+        </template>
+      </el-table-column>
+```
+```
+   父组件
+    <TableShowWithDetail :config="config">
+      <template #deleteBtn="{row}">
+        <el-button type="danger" size="mini" @click="xxxxx(row)">删除</el-button>
+      </template>
+    </TableShowWithDetail>
+```
