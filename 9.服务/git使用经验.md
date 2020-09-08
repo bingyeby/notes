@@ -1,12 +1,3 @@
-```
-再次加工commit
-git commit --ament 
-
-
-git show
-```
-
-
 ### git log
     https://www.cnblogs.com/bellkosmos/p/5923439.html
 
@@ -32,7 +23,7 @@ git show
     
 
 ### 将远程仓的某分支拉到本地并提交到自己远程仓
-*     git checkout -b newb
+    git checkout -b newb
     git reset --hard mr/newb
     git push origin newb
     若提示远程无此分支 则需要执行git fetch mr更新远程主仓分支
@@ -67,9 +58,15 @@ git show
         revert 是在正常的commit历史中再commit一次,只不过是反向提交 HEAD是一致向前的
         
     git reset 是直接删除指定的commit
-        reset 是在正常的commit历史中删除了指定的commit HEAD后移
+        reset 是在正常的commit历史中删除了指定的commit HEAD后移s
 
 ### 强制回退至远程某代码
     git fetch --all
     git reset --hard origin/master    [git reset --hard uu/test]
     git pull
+
+### 在某一分支,查看另一个分支的某文件内容
+    git show master:./src/index.js
+
+### 再次加工commit描述
+    git commit --ament 
