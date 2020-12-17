@@ -528,15 +528,17 @@ server listening in 3000
 proxy url: chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=127.0.0.1:9229/__ws_proxy__
 ```
 
+360浏览器: chrome://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=127.0.0.1:9229/__ws_proxy__
+
 拷贝一下 proxy url 后面那串链接并且在 chrome 上打开就可以 debug 了，可以直接在 chrome devtool 的 sources 上对代码进行断点调试。
 
 如果要搭配 nodemon 则可以这么写，文件更改重启之后，只要在 chrome 上点一下 reconnect 即可继续 debug
 
-$ npx nodemon --exec 'inspector-proxy ./httptest.js'
+$ npx nodemon --exec 'inspector-proxy ./httptest.js'  ???
+$ npx nodemon --exec inspector-proxy ./httptest.js   +++
 
 
 https://www.cnblogs.com/luoguixin/p/6346620.html
-
 
 
 ### cluster & forever
