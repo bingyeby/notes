@@ -23,8 +23,8 @@
     
 
 ### 将远程仓的某分支拉到本地并提交到自己远程仓
-    git checkout -b newb
-    git reset --hard mr/newb
+    git checkout -b newb  // 切换到一个新建的分支
+    git reset --hard uu/newb
     git push origin newb
     若提示远程无此分支 则需要执行git fetch mr更新远程主仓分支
 
@@ -70,3 +70,21 @@
 
 ### 再次加工commit描述
     git commit --ament 
+
+### 其他
+    切换到上一个使用的分支
+    git checkout -
+
+    在commit之后,撤销此次commit,退回到上个版本,但是不回退提交前的修改
+    git reset HEAD^
+
+    在commit之后,对最近一次commit进行修改
+    git commit -a -amend
+    
+    git branch -d $branchName   // 删除分支
+    git branch -D $branchName   // 强制删除分支
+
+    git branch -v   //  查看各个分支最后一次提交
+
+    git fetch origin // 更新远程库信息到本地(远程新建分支)
+
