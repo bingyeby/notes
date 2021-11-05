@@ -11,6 +11,19 @@
     https://segmentfault.com/a/1190000021205134
     手把手用代码教你实现一个 webpack loader plugin
 
+    https://blog.csdn.net/frontend_frank/article/details/106205260
+    webpack运行原理
+
+    https://www.jianshu.com/p/b5bffcc332cb
+    示例:统计输出各个文件的大小
+
+    https://blog.didiyun.com/index.php/2019/03/01/webpack/#EntryOptionPlugin
+    WebPack 插件机制探索
+
+    https://www.jianshu.com/p/b5bffcc332cb
+    原理及各种小插件使用实例
+    
+
 
 ### webpack 插件在项目中的运用
 
